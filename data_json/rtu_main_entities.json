@@ -1,0 +1,1947 @@
+{
+  "university": "Riverside Technical University",
+  "departments": [
+    {
+      "department_name": "Computer Science"
+    },
+    {
+      "department_name": "Electrical Engineering"
+    },
+    {
+      "department_name": "Mathematics"
+    },
+    {
+      "department_name": "Physics"
+    },
+    {
+      "department_name": "Biology"
+    },
+    {
+      "department_name": "Chemistry"
+    },
+    {
+      "department_name": "Data Science"
+    },
+    {
+      "department_name": "Mechanical Engineering"
+    },
+    {
+      "department_name": "Statistics"
+    },
+    {
+      "department_name": "Biomedical Engineering"
+    }
+  ],
+  "instructors": [
+    {
+      "name": "Sarah Chen",
+      "first_name": "Sarah",
+      "last_name": "Chen",
+      "average_rating": 4.2,
+      "departments": [
+        "Computer Science",
+        "Data Science"
+      ]
+    },
+    {
+      "name": "Michael Rodriguez",
+      "first_name": "Michael",
+      "last_name": "Rodriguez",
+      "average_rating": 2.8,
+      "departments": [
+        "Computer Science"
+      ]
+    },
+    {
+      "name": "Emily Watson",
+      "first_name": "Emily",
+      "last_name": "Watson",
+      "average_rating": 4.5,
+      "departments": [
+        "Mathematics",
+        "Statistics"
+      ]
+    },
+    {
+      "name": "David Kim",
+      "first_name": "David",
+      "last_name": "Kim",
+      "average_rating": 3.3,
+      "departments": [
+        "Physics"
+      ]
+    },
+    {
+      "name": "Jennifer Liu",
+      "first_name": "Jennifer",
+      "last_name": "Liu",
+      "average_rating": 4.7,
+      "departments": [
+        "Biology",
+        "Biomedical Engineering"
+      ]
+    },
+    {
+      "name": "Robert Anderson",
+      "first_name": "Robert",
+      "last_name": "Anderson",
+      "average_rating": 2.9,
+      "departments": [
+        "Chemistry"
+      ]
+    },
+    {
+      "name": "Maria Garcia",
+      "first_name": "Maria",
+      "last_name": "Garcia",
+      "average_rating": 4.1,
+      "departments": [
+        "Electrical Engineering"
+      ]
+    },
+    {
+      "name": "James Thompson",
+      "first_name": "James",
+      "last_name": "Thompson",
+      "average_rating": 3.6,
+      "departments": [
+        "Mechanical Engineering"
+      ]
+    },
+    {
+      "name": "Lisa Park",
+      "first_name": "Lisa",
+      "last_name": "Park",
+      "average_rating": 4.4,
+      "departments": [
+        "Data Science",
+        "Statistics"
+      ]
+    },
+    {
+      "name": "Kevin Brown",
+      "first_name": "Kevin",
+      "last_name": "Brown",
+      "average_rating": 3.2,
+      "departments": [
+        "Computer Science"
+      ]
+    },
+    {
+      "name": "Amanda White",
+      "first_name": "Amanda",
+      "last_name": "White",
+      "average_rating": 4.6,
+      "departments": [
+        "Mathematics"
+      ]
+    },
+    {
+      "name": "Christopher Lee",
+      "first_name": "Christopher",
+      "last_name": "Lee",
+      "average_rating": 3.9,
+      "departments": [
+        "Physics",
+        "Electrical Engineering"
+      ]
+    },
+    {
+      "name": "Nancy Davis",
+      "first_name": "Nancy",
+      "last_name": "Davis",
+      "average_rating": 4.0,
+      "departments": [
+        "Chemistry",
+        "Biology"
+      ]
+    },
+    {
+      "name": "Steven Miller",
+      "first_name": "Steven",
+      "last_name": "Miller",
+      "average_rating": 3.5,
+      "departments": [
+        "Biomedical Engineering"
+      ]
+    },
+    {
+      "name": "Patricia Wilson",
+      "first_name": "Patricia",
+      "last_name": "Wilson",
+      "average_rating": 4.3,
+      "departments": [
+        "Computer Science",
+        "Mathematics"
+      ]
+    },
+    {
+      "name": "Thomas Martinez",
+      "first_name": "Thomas",
+      "last_name": "Martinez",
+      "average_rating": 2.8,
+      "departments": [
+        "Electrical Engineering"
+      ]
+    },
+    {
+      "name": "Barbara Taylor",
+      "first_name": "Barbara",
+      "last_name": "Taylor",
+      "average_rating": 4.8,
+      "departments": [
+        "Data Science"
+      ]
+    },
+    {
+      "name": "Daniel Jackson",
+      "first_name": "Daniel",
+      "last_name": "Jackson",
+      "average_rating": 3.7,
+      "departments": [
+        "Mechanical Engineering",
+        "Physics"
+      ]
+    },
+    {
+      "name": "Susan Harris",
+      "first_name": "Susan",
+      "last_name": "Harris",
+      "average_rating": 4.2,
+      "departments": [
+        "Statistics",
+        "Mathematics"
+      ]
+    },
+    {
+      "name": "Mark Robinson",
+      "first_name": "Mark",
+      "last_name": "Robinson",
+      "average_rating": 3.4,
+      "departments": [
+        "Chemistry"
+      ]
+    },
+    {
+      "name": "Helen Clark",
+      "first_name": "Helen",
+      "last_name": "Clark",
+      "average_rating": 4.5,
+      "departments": [
+        "Biology",
+        "Chemistry"
+      ]
+    },
+    {
+      "name": "Paul Lewis",
+      "first_name": "Paul",
+      "last_name": "Lewis",
+      "average_rating": 3.1,
+      "departments": [
+        "Computer Science"
+      ]
+    },
+    {
+      "name": "Karen Hall",
+      "first_name": "Karen",
+      "last_name": "Hall",
+      "average_rating": 4.1,
+      "departments": [
+        "Biomedical Engineering",
+        "Biology"
+      ]
+    },
+    {
+      "name": "Joseph Young",
+      "first_name": "Joseph",
+      "last_name": "Young",
+      "average_rating": 3.8,
+      "departments": [
+        "Electrical Engineering",
+        "Computer Science"
+      ]
+    },
+    {
+      "name": "Betty Allen",
+      "first_name": "Betty",
+      "last_name": "Allen",
+      "average_rating": 4.4,
+      "departments": [
+        "Mathematics",
+        "Physics"
+      ]
+    },
+    {
+      "name": "Charles King",
+      "first_name": "Charles",
+      "last_name": "King",
+      "average_rating": 3.0,
+      "departments": [
+        "Mechanical Engineering"
+      ]
+    },
+    {
+      "name": "Margaret Wright",
+      "first_name": "Margaret",
+      "last_name": "Wright",
+      "average_rating": 4.6,
+      "departments": [
+        "Data Science",
+        "Computer Science"
+      ]
+    },
+    {
+      "name": "Richard Green",
+      "first_name": "Richard",
+      "last_name": "Green",
+      "average_rating": 3.5,
+      "departments": [
+        "Statistics"
+      ]
+    },
+    {
+      "name": "Dorothy Adams",
+      "first_name": "Dorothy",
+      "last_name": "Adams",
+      "average_rating": 4.2,
+      "departments": [
+        "Chemistry",
+        "Biomedical Engineering"
+      ]
+    },
+    {
+      "name": "William Turner",
+      "first_name": "William",
+      "last_name": "Turner",
+      "average_rating": 3.9,
+      "departments": [
+        "Physics",
+        "Mathematics"
+      ]
+    },
+    {
+      "name": "John Smith",
+      "first_name": "John",
+      "last_name": "Smith",
+      "average_rating": 4.0,
+      "departments": [
+        "Data Science"
+      ]
+    },
+    {
+      "name": "William Brown",
+      "first_name": "William",
+      "last_name": "Brown",
+      "average_rating": 3.7,
+      "departments": [
+        "Computer Science"
+      ]
+    },
+    {
+      "name": "Christopher Mitchell",
+      "first_name": "Christopher",
+      "last_name": "Mitchell",
+      "average_rating": 3.8,
+      "departments": [
+        "Computer Science"
+      ]
+    },
+    {
+      "name": "Linda Martinez",
+      "first_name": "Linda",
+      "last_name": "Martinez",
+      "average_rating": 4.1,
+      "departments": [
+        "Statistics"
+      ]
+    },
+    {
+      "name": "Paul Adams",
+      "first_name": "Paul",
+      "last_name": "Adams",
+      "average_rating": 3.6,
+      "departments": [
+        "Mathematics"
+      ]
+    },
+    {
+      "name": "Patricia Nelson",
+      "first_name": "Patricia",
+      "last_name": "Nelson",
+      "average_rating": 4.2,
+      "departments": [
+        "Physics"
+      ]
+    },
+    {
+      "name": "Daniel Clark",
+      "first_name": "Daniel",
+      "last_name": "Clark",
+      "average_rating": 3.9,
+      "departments": [
+        "Biology"
+      ]
+    },
+    {
+      "name": "Susan Lewis",
+      "first_name": "Susan",
+      "last_name": "Lewis",
+      "average_rating": 3.5,
+      "departments": [
+        "Chemistry"
+      ]
+    },
+    {
+      "name": "Thomas Wright",
+      "first_name": "Thomas",
+      "last_name": "Wright",
+      "average_rating": 3.8,
+      "departments": [
+        "Statistics"
+      ]
+    },
+    {
+      "name": "Nancy Evans",
+      "first_name": "Nancy",
+      "last_name": "Evans",
+      "average_rating": 4.0,
+      "departments": [
+        "Electrical Engineering"
+      ]
+    }
+  ],
+  "courses": [
+    {
+      "course_number": "CS5200",
+      "course_name": "Database Management Systems",
+      "course_description": "Introduces relational database management systems as a class of software systems. Architectural foundations, design issues, and implementation techniques are covered.",
+      "departments": [
+        "Computer Science",
+        "Data Science"
+      ]
+    },
+    {
+      "course_number": "CS5800",
+      "course_name": "Algorithms",
+      "course_description": "Presents the mathematical techniques used for the design and analysis of computer algorithms. Focuses on algorithmic design paradigms and techniques for analyzing the correctness and running time.",
+      "departments": [
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "CS5100",
+      "course_name": "Foundations of Artificial Intelligence",
+      "course_description": "Introduces core concepts and methods in artificial intelligence including search strategies, knowledge representation, reasoning, machine learning fundamentals.",
+      "departments": [
+        "Computer Science",
+        "Data Science"
+      ]
+    },
+    {
+      "course_number": "CS5600",
+      "course_name": "Computer Systems",
+      "course_description": "Studies the structure, components, and operation of computer systems. Topics include computer architecture, operating systems, and systems programming.",
+      "departments": [
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "CS5400",
+      "course_name": "Computer Networks",
+      "course_description": "Network protocols, architecture, routing algorithms, congestion control, wireless networks, and network security.",
+      "departments": [
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "CS5700",
+      "course_name": "Cybersecurity",
+      "course_description": "Security threats, cryptography, network security, web security, malware analysis, and security best practices.",
+      "departments": [
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "CS5310",
+      "course_name": "Computer Graphics",
+      "course_description": "3D graphics pipeline, transformations, lighting, shading, texture mapping, ray tracing, and GPU programming.",
+      "departments": [
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "CS5850",
+      "course_name": "Distributed Systems",
+      "course_description": "Principles of distributed computing, consensus algorithms, replication, fault tolerance, and cloud computing.",
+      "departments": [
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "CS5950",
+      "course_name": "Software Engineering",
+      "course_description": "Software development methodologies, requirements engineering, design patterns, testing, project management, and agile methods.",
+      "departments": [
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "EE5410",
+      "course_name": "Signal Processing",
+      "course_description": "Theory and application of discrete-time signals and systems, frequency domain analysis, filter design, sampling theorem, and digital signal processing applications.",
+      "departments": [
+        "Electrical Engineering"
+      ]
+    },
+    {
+      "course_number": "EE5230",
+      "course_name": "Power Systems Analysis",
+      "course_description": "Analysis of electric power systems including power flow, fault analysis, stability, and modern grid technologies.",
+      "departments": [
+        "Electrical Engineering"
+      ]
+    },
+    {
+      "course_number": "EE5550",
+      "course_name": "Control Systems",
+      "course_description": "Linear control theory, state-space methods, stability analysis, controller design, and digital control systems.",
+      "departments": [
+        "Electrical Engineering"
+      ]
+    },
+    {
+      "course_number": "EE5670",
+      "course_name": "Digital Communications",
+      "course_description": "Digital modulation, error control coding, channel capacity, wireless communication systems, and modern communication standards.",
+      "departments": [
+        "Electrical Engineering"
+      ]
+    },
+    {
+      "course_number": "EE5780",
+      "course_name": "VLSI Design",
+      "course_description": "Design of integrated circuits, CMOS technology, circuit simulation, layout, timing analysis, and chip testing.",
+      "departments": [
+        "Electrical Engineering",
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "MATH5110",
+      "course_name": "Linear Algebra",
+      "course_description": "Vector spaces, linear transformations, matrices, systems of linear equations, eigenvalues, and applications to engineering and science.",
+      "departments": [
+        "Mathematics"
+      ]
+    },
+    {
+      "course_number": "MATH5220",
+      "course_name": "Real Analysis",
+      "course_description": "Rigorous treatment of limits, continuity, differentiation, integration, sequences and series of functions, metric spaces.",
+      "departments": [
+        "Mathematics"
+      ]
+    },
+    {
+      "course_number": "MATH5330",
+      "course_name": "Numerical Methods",
+      "course_description": "Computational methods for solving mathematical problems, error analysis, interpolation, numerical integration, differential equations.",
+      "departments": [
+        "Mathematics",
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "MATH5440",
+      "course_name": "Optimization",
+      "course_description": "Linear and nonlinear optimization, convex optimization, dynamic programming, and applications in engineering and science.",
+      "departments": [
+        "Mathematics",
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "MATH5550",
+      "course_name": "Differential Equations",
+      "course_description": "Ordinary and partial differential equations, existence and uniqueness theorems, numerical solutions, and applications.",
+      "departments": [
+        "Mathematics"
+      ]
+    },
+    {
+      "course_number": "PHYS5310",
+      "course_name": "Quantum Mechanics",
+      "course_description": "Introduction to quantum physics including wave functions, Schrodinger equation, quantum states, measurement theory, and applications.",
+      "departments": [
+        "Physics"
+      ]
+    },
+    {
+      "course_number": "PHYS5120",
+      "course_name": "Classical Mechanics",
+      "course_description": "Advanced classical mechanics including Lagrangian and Hamiltonian formulations, rigid body dynamics, and nonlinear dynamics.",
+      "departments": [
+        "Physics"
+      ]
+    },
+    {
+      "course_number": "PHYS5420",
+      "course_name": "Statistical Mechanics",
+      "course_description": "Statistical description of physical systems, ensemble theory, quantum statistics, phase transitions, and applications.",
+      "departments": [
+        "Physics"
+      ]
+    },
+    {
+      "course_number": "PHYS5530",
+      "course_name": "Solid State Physics",
+      "course_description": "Crystal structure, electronic properties of solids, semiconductors, superconductivity, and magnetic materials.",
+      "departments": [
+        "Physics",
+        "Electrical Engineering"
+      ]
+    },
+    {
+      "course_number": "PHYS5640",
+      "course_name": "Computational Physics",
+      "course_description": "Numerical methods in physics, Monte Carlo simulations, molecular dynamics, finite element methods, and parallel computing.",
+      "departments": [
+        "Physics",
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "BIO5200",
+      "course_name": "Cell Biology",
+      "course_description": "Structure and function of cells, cellular organelles, cell signaling, cell cycle, and molecular mechanisms of cellular processes.",
+      "departments": [
+        "Biology"
+      ]
+    },
+    {
+      "course_number": "BIO5450",
+      "course_name": "Genetics and Genomics",
+      "course_description": "Modern genetics including molecular genetics, genomics, population genetics, and computational approaches to genetic analysis.",
+      "departments": [
+        "Biology",
+        "Biomedical Engineering"
+      ]
+    },
+    {
+      "course_number": "BIO5330",
+      "course_name": "Molecular Biology",
+      "course_description": "Gene expression, DNA replication, transcription, translation, gene regulation, and molecular biology techniques.",
+      "departments": [
+        "Biology",
+        "Biomedical Engineering"
+      ]
+    },
+    {
+      "course_number": "BIO5540",
+      "course_name": "Neuroscience",
+      "course_description": "Structure and function of the nervous system, neural signaling, sensory systems, motor control, and cognitive neuroscience.",
+      "departments": [
+        "Biology",
+        "Biomedical Engineering"
+      ]
+    },
+    {
+      "course_number": "CHEM5100",
+      "course_name": "Organic Chemistry",
+      "course_description": "Structure, properties, and reactions of organic compounds. Mechanisms of organic reactions and synthetic strategies.",
+      "departments": [
+        "Chemistry"
+      ]
+    },
+    {
+      "course_number": "CHEM5320",
+      "course_name": "Physical Chemistry",
+      "course_description": "Thermodynamics, kinetics, quantum chemistry, and spectroscopy. Mathematical treatment of chemical phenomena.",
+      "departments": [
+        "Chemistry"
+      ]
+    },
+    {
+      "course_number": "CHEM5420",
+      "course_name": "Analytical Chemistry",
+      "course_description": "Modern analytical techniques including spectroscopy, chromatography, mass spectrometry, and electrochemical methods.",
+      "departments": [
+        "Chemistry"
+      ]
+    },
+    {
+      "course_number": "CHEM5530",
+      "course_name": "Biochemistry",
+      "course_description": "Structure and function of proteins, enzymes, metabolism, bioenergetics, and regulation of biochemical pathways.",
+      "departments": [
+        "Chemistry",
+        "Biology"
+      ]
+    },
+    {
+      "course_number": "DS5010",
+      "course_name": "Introduction to Data Science",
+      "course_description": "Fundamentals of data science including data manipulation, visualization, statistical analysis, and basic machine learning using Python.",
+      "departments": [
+        "Data Science"
+      ]
+    },
+    {
+      "course_number": "DS5230",
+      "course_name": "Machine Learning",
+      "course_description": "Supervised and unsupervised learning algorithms, neural networks, deep learning, model evaluation, and practical applications.",
+      "departments": [
+        "Data Science",
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "DS5320",
+      "course_name": "Deep Learning",
+      "course_description": "Neural network architectures, convolutional networks, recurrent networks, transformers, and applications in computer vision and NLP.",
+      "departments": [
+        "Data Science",
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "DS5420",
+      "course_name": "Natural Language Processing",
+      "course_description": "Text processing, language models, sentiment analysis, machine translation, and modern NLP architectures.",
+      "departments": [
+        "Data Science",
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "DS5510",
+      "course_name": "Big Data Systems",
+      "course_description": "Distributed data processing, Hadoop, Spark, NoSQL databases, stream processing, and scalable analytics.",
+      "departments": [
+        "Data Science",
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "ME5340",
+      "course_name": "Thermodynamics",
+      "course_description": "Laws of thermodynamics, entropy, energy conversion, power cycles, refrigeration, and applications to engineering systems.",
+      "departments": [
+        "Mechanical Engineering"
+      ]
+    },
+    {
+      "course_number": "ME5120",
+      "course_name": "Fluid Mechanics",
+      "course_description": "Fluid statics and dynamics, conservation laws, dimensional analysis, flow in pipes, boundary layers, and computational fluid dynamics.",
+      "departments": [
+        "Mechanical Engineering"
+      ]
+    },
+    {
+      "course_number": "ME5450",
+      "course_name": "Robotics",
+      "course_description": "Robot kinematics, dynamics, control, path planning, sensors, and artificial intelligence in robotics.",
+      "departments": [
+        "Mechanical Engineering",
+        "Electrical Engineering"
+      ]
+    },
+    {
+      "course_number": "ME5560",
+      "course_name": "Materials Science",
+      "course_description": "Structure and properties of materials, phase diagrams, mechanical properties, failure analysis, and material selection.",
+      "departments": [
+        "Mechanical Engineering",
+        "Biomedical Engineering"
+      ]
+    },
+    {
+      "course_number": "STAT5100",
+      "course_name": "Statistical Inference",
+      "course_description": "Probability theory, random variables, sampling distributions, estimation, hypothesis testing, and confidence intervals.",
+      "departments": [
+        "Statistics"
+      ]
+    },
+    {
+      "course_number": "STAT5250",
+      "course_name": "Time Series Analysis",
+      "course_description": "Statistical methods for analyzing time-dependent data, ARIMA models, forecasting, spectral analysis.",
+      "departments": [
+        "Statistics",
+        "Data Science"
+      ]
+    },
+    {
+      "course_number": "STAT5340",
+      "course_name": "Bayesian Statistics",
+      "course_description": "Bayesian inference, prior distributions, MCMC methods, hierarchical models, and Bayesian computation.",
+      "departments": [
+        "Statistics",
+        "Data Science"
+      ]
+    },
+    {
+      "course_number": "STAT5450",
+      "course_name": "Experimental Design",
+      "course_description": "Design and analysis of experiments, ANOVA, factorial designs, response surface methods, and applications.",
+      "departments": [
+        "Statistics"
+      ]
+    },
+    {
+      "course_number": "BME5100",
+      "course_name": "Biomedical Instrumentation",
+      "course_description": "Design and application of electronic instrumentation for biological measurements, sensors, signal conditioning, and medical devices.",
+      "departments": [
+        "Biomedical Engineering"
+      ]
+    },
+    {
+      "course_number": "BME5300",
+      "course_name": "Biomaterials",
+      "course_description": "Materials used in medical devices and implants, biocompatibility, tissue engineering, drug delivery systems.",
+      "departments": [
+        "Biomedical Engineering"
+      ]
+    },
+    {
+      "course_number": "BME5420",
+      "course_name": "Medical Imaging",
+      "course_description": "Principles of medical imaging modalities including X-ray, CT, MRI, ultrasound, image processing and reconstruction.",
+      "departments": [
+        "Biomedical Engineering"
+      ]
+    },
+    {
+      "course_number": "CS5500",
+      "course_name": "Foundations of Software Engineering",
+      "course_description": "Software design principles, development methodologies, version control, testing strategies, and team collaboration.",
+      "departments": [
+        "Computer Science"
+      ]
+    },
+    {
+      "course_number": "BIO5120",
+      "course_name": "Biochemistry and Molecular Biology",
+      "course_description": "Biochemical processes, protein structure and function, enzyme kinetics, metabolic pathways, and molecular biology techniques.",
+      "departments": [
+        "Biology"
+      ]
+    },
+    {
+      "course_number": "BIO5340",
+      "course_name": "Ecology and Evolution",
+      "course_description": "Ecological principles, population dynamics, community ecology, evolutionary theory, and conservation biology.",
+      "departments": [
+        "Biology"
+      ]
+    },
+    {
+      "course_number": "CHEM5200",
+      "course_name": "Inorganic Chemistry",
+      "course_description": "Structure and bonding in inorganic compounds, coordination chemistry, organometallic chemistry, and solid-state chemistry.",
+      "departments": [
+        "Chemistry"
+      ]
+    },
+    {
+      "course_number": "CHEM5410",
+      "course_name": "Environmental Chemistry",
+      "course_description": "Chemical processes in the environment, atmospheric chemistry, water chemistry, pollution, and environmental analysis.",
+      "departments": [
+        "Chemistry"
+      ]
+    },
+    {
+      "course_number": "DS5100",
+      "course_name": "Data Structures and Algorithms for Data Science",
+      "course_description": "Fundamental data structures, algorithm analysis, optimization techniques, and their applications in data science.",
+      "departments": [
+        "Data Science"
+      ]
+    },
+    {
+      "course_number": "DS5340",
+      "course_name": "Data Visualization",
+      "course_description": "Principles of visual design, interactive visualizations, dashboard creation, and storytelling with data.",
+      "departments": [
+        "Data Science"
+      ]
+    },
+    {
+      "course_number": "EE5520",
+      "course_name": "Embedded Systems",
+      "course_description": "Microcontroller programming, real-time systems, hardware-software integration, and IoT applications.",
+      "departments": [
+        "Electrical Engineering"
+      ]
+    },
+    {
+      "course_number": "MATH5320",
+      "course_name": "Abstract Algebra",
+      "course_description": "Groups, rings, fields, Galois theory, and applications to cryptography and coding theory.",
+      "departments": [
+        "Mathematics"
+      ]
+    },
+    {
+      "course_number": "ME5320",
+      "course_name": "Dynamics and Vibrations",
+      "course_description": "Kinematics and kinetics of particles and rigid bodies, vibration analysis, modal analysis, and dynamic system modeling.",
+      "departments": [
+        "Mechanical Engineering"
+      ]
+    },
+    {
+      "course_number": "ME5780",
+      "course_name": "Heat Transfer",
+      "course_description": "Conduction, convection, radiation, heat exchangers, and computational heat transfer methods.",
+      "departments": [
+        "Mechanical Engineering"
+      ]
+    },
+    {
+      "course_number": "STAT5220",
+      "course_name": "Linear Models",
+      "course_description": "Linear regression, ANOVA, generalized linear models, mixed models, and applications in data analysis.",
+      "departments": [
+        "Statistics"
+      ]
+    },
+    {
+      "course_number": "STAT5330",
+      "course_name": "Multivariate Statistics",
+      "course_description": "Multivariate distributions, principal component analysis, factor analysis, discriminant analysis, and clustering.",
+      "departments": [
+        "Statistics"
+      ]
+    },
+    {
+      "course_number": "BME5220",
+      "course_name": "Tissue Engineering",
+      "course_description": "Principles of tissue engineering, scaffold design, cell culture, bioreactors, and regenerative medicine applications.",
+      "departments": [
+        "Biomedical Engineering"
+      ]
+    },
+    {
+      "course_number": "BME5350",
+      "course_name": "Biomechanics",
+      "course_description": "Mechanics of biological tissues, musculoskeletal biomechanics, cardiovascular mechanics, and computational modeling.",
+      "departments": [
+        "Biomedical Engineering"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "alex_chen",
+      "password": "hashed_pwd_1",
+      "school_year": "First Year"
+    },
+    {
+      "username": "sarah_j",
+      "password": "hashed_pwd_2",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "mike_wilson",
+      "password": "hashed_pwd_3",
+      "school_year": "Junior"
+    },
+    {
+      "username": "emma_davis",
+      "password": "hashed_pwd_4",
+      "school_year": "Senior"
+    },
+    {
+      "username": "ryan_kim",
+      "password": "hashed_pwd_5",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "lisa_wang",
+      "password": "hashed_pwd_6",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "john_smith",
+      "password": "hashed_pwd_7",
+      "school_year": "First Year"
+    },
+    {
+      "username": "amy_lee",
+      "password": "hashed_pwd_8",
+      "school_year": "PhD Year 2"
+    },
+    {
+      "username": "david_brown",
+      "password": "hashed_pwd_9",
+      "school_year": "Junior"
+    },
+    {
+      "username": "jennifer_liu",
+      "password": "hashed_pwd_10",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "chris_martinez",
+      "password": "hashed_pwd_11",
+      "school_year": "Senior"
+    },
+    {
+      "username": "michelle_park",
+      "password": "hashed_pwd_12",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "kevin_zhang",
+      "password": "hashed_pwd_13",
+      "school_year": "PhD Year 1"
+    },
+    {
+      "username": "amanda_white",
+      "password": "hashed_pwd_14",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "brian_jones",
+      "password": "hashed_pwd_15",
+      "school_year": "First Year"
+    },
+    {
+      "username": "nancy_taylor",
+      "password": "hashed_pwd_16",
+      "school_year": "Junior"
+    },
+    {
+      "username": "steven_garcia",
+      "password": "hashed_pwd_17",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "rachel_anderson",
+      "password": "hashed_pwd_18",
+      "school_year": "Senior"
+    },
+    {
+      "username": "daniel_clark",
+      "password": "hashed_pwd_19",
+      "school_year": "PhD Year 3"
+    },
+    {
+      "username": "jessica_miller",
+      "password": "hashed_pwd_20",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "andrew_thomas",
+      "password": "hashed_pwd_21",
+      "school_year": "First Year"
+    },
+    {
+      "username": "sophia_robinson",
+      "password": "hashed_pwd_22",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "william_hall",
+      "password": "hashed_pwd_23",
+      "school_year": "Junior"
+    },
+    {
+      "username": "olivia_lewis",
+      "password": "hashed_pwd_24",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "james_walker",
+      "password": "hashed_pwd_25",
+      "school_year": "Senior"
+    },
+    {
+      "username": "emily_young",
+      "password": "hashed_pwd_26",
+      "school_year": "PhD Year 4"
+    },
+    {
+      "username": "robert_king",
+      "password": "hashed_pwd_27",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "maria_wright",
+      "password": "hashed_pwd_28",
+      "school_year": "First Year"
+    },
+    {
+      "username": "joseph_harris",
+      "password": "hashed_pwd_29",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "victoria_green",
+      "password": "hashed_pwd_30",
+      "school_year": "Junior"
+    },
+    {
+      "username": "thomas_adams",
+      "password": "hashed_pwd_31",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "elizabeth_turner",
+      "password": "hashed_pwd_32",
+      "school_year": "Senior"
+    },
+    {
+      "username": "charles_mitchell",
+      "password": "hashed_pwd_33",
+      "school_year": "PhD Year 2"
+    },
+    {
+      "username": "patricia_campbell",
+      "password": "hashed_pwd_34",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "richard_nelson",
+      "password": "hashed_pwd_35",
+      "school_year": "First Year"
+    },
+    {
+      "username": "barbara_carter",
+      "password": "hashed_pwd_36",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "paul_roberts",
+      "password": "hashed_pwd_37",
+      "school_year": "Junior"
+    },
+    {
+      "username": "susan_phillips",
+      "password": "hashed_pwd_38",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "mark_evans",
+      "password": "hashed_pwd_39",
+      "school_year": "Senior"
+    },
+    {
+      "username": "linda_torres",
+      "password": "hashed_pwd_40",
+      "school_year": "PhD Year 1"
+    },
+    {
+      "username": "jason_parker",
+      "password": "hashed_pwd_41",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "karen_flores",
+      "password": "hashed_pwd_42",
+      "school_year": "First Year"
+    },
+    {
+      "username": "george_morris",
+      "password": "hashed_pwd_43",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "betty_rivera",
+      "password": "hashed_pwd_44",
+      "school_year": "Junior"
+    },
+    {
+      "username": "edward_cook",
+      "password": "hashed_pwd_45",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "helen_rogers",
+      "password": "hashed_pwd_46",
+      "school_year": "Senior"
+    },
+    {
+      "username": "donald_reed",
+      "password": "hashed_pwd_47",
+      "school_year": "PhD Year 3"
+    },
+    {
+      "username": "dorothy_bailey",
+      "password": "hashed_pwd_48",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "kenneth_bell",
+      "password": "hashed_pwd_49",
+      "school_year": "First Year"
+    },
+    {
+      "username": "margaret_cooper",
+      "password": "hashed_pwd_50",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "tech_user_51",
+      "password": "hashed_pwd_51",
+      "school_year": "Junior"
+    },
+    {
+      "username": "tech_user_52",
+      "password": "hashed_pwd_52",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "tech_user_53",
+      "password": "hashed_pwd_53",
+      "school_year": "Senior"
+    },
+    {
+      "username": "tech_user_54",
+      "password": "hashed_pwd_54",
+      "school_year": "PhD Year 2"
+    },
+    {
+      "username": "tech_user_55",
+      "password": "hashed_pwd_55",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "tech_user_56",
+      "password": "hashed_pwd_56",
+      "school_year": "First Year"
+    },
+    {
+      "username": "tech_user_57",
+      "password": "hashed_pwd_57",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "tech_user_58",
+      "password": "hashed_pwd_58",
+      "school_year": "Junior"
+    },
+    {
+      "username": "tech_user_59",
+      "password": "hashed_pwd_59",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "tech_user_60",
+      "password": "hashed_pwd_60",
+      "school_year": "Senior"
+    },
+    {
+      "username": "tech_user_61",
+      "password": "hashed_pwd_61",
+      "school_year": "PhD Year 1"
+    },
+    {
+      "username": "tech_user_62",
+      "password": "hashed_pwd_62",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "tech_user_63",
+      "password": "hashed_pwd_63",
+      "school_year": "First Year"
+    },
+    {
+      "username": "tech_user_64",
+      "password": "hashed_pwd_64",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "tech_user_65",
+      "password": "hashed_pwd_65",
+      "school_year": "Junior"
+    },
+    {
+      "username": "tech_user_66",
+      "password": "hashed_pwd_66",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "tech_user_67",
+      "password": "hashed_pwd_67",
+      "school_year": "Senior"
+    },
+    {
+      "username": "tech_user_68",
+      "password": "hashed_pwd_68",
+      "school_year": "PhD Year 4"
+    },
+    {
+      "username": "tech_user_69",
+      "password": "hashed_pwd_69",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "tech_user_70",
+      "password": "hashed_pwd_70",
+      "school_year": "First Year"
+    },
+    {
+      "username": "tech_user_71",
+      "password": "hashed_pwd_71",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "tech_user_72",
+      "password": "hashed_pwd_72",
+      "school_year": "Junior"
+    },
+    {
+      "username": "tech_user_73",
+      "password": "hashed_pwd_73",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "tech_user_74",
+      "password": "hashed_pwd_74",
+      "school_year": "Senior"
+    },
+    {
+      "username": "tech_user_75",
+      "password": "hashed_pwd_75",
+      "school_year": "PhD Year 2"
+    },
+    {
+      "username": "tech_user_76",
+      "password": "hashed_pwd_76",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "tech_user_77",
+      "password": "hashed_pwd_77",
+      "school_year": "First Year"
+    },
+    {
+      "username": "tech_user_78",
+      "password": "hashed_pwd_78",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "tech_user_79",
+      "password": "hashed_pwd_79",
+      "school_year": "Junior"
+    },
+    {
+      "username": "tech_user_80",
+      "password": "hashed_pwd_80",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "tech_user_81",
+      "password": "hashed_pwd_81",
+      "school_year": "Senior"
+    },
+    {
+      "username": "tech_user_82",
+      "password": "hashed_pwd_82",
+      "school_year": "PhD Year 3"
+    },
+    {
+      "username": "tech_user_83",
+      "password": "hashed_pwd_83",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "tech_user_84",
+      "password": "hashed_pwd_84",
+      "school_year": "First Year"
+    },
+    {
+      "username": "tech_user_85",
+      "password": "hashed_pwd_85",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "tech_user_86",
+      "password": "hashed_pwd_86",
+      "school_year": "Junior"
+    },
+    {
+      "username": "tech_user_87",
+      "password": "hashed_pwd_87",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "tech_user_88",
+      "password": "hashed_pwd_88",
+      "school_year": "Senior"
+    },
+    {
+      "username": "tech_user_89",
+      "password": "hashed_pwd_89",
+      "school_year": "PhD Year 1"
+    },
+    {
+      "username": "tech_user_90",
+      "password": "hashed_pwd_90",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "tech_user_91",
+      "password": "hashed_pwd_91",
+      "school_year": "First Year"
+    },
+    {
+      "username": "tech_user_92",
+      "password": "hashed_pwd_92",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "tech_user_93",
+      "password": "hashed_pwd_93",
+      "school_year": "Junior"
+    },
+    {
+      "username": "tech_user_94",
+      "password": "hashed_pwd_94",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "tech_user_95",
+      "password": "hashed_pwd_95",
+      "school_year": "Senior"
+    },
+    {
+      "username": "tech_user_96",
+      "password": "hashed_pwd_96",
+      "school_year": "PhD Year 2"
+    },
+    {
+      "username": "tech_user_97",
+      "password": "hashed_pwd_97",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "tech_user_98",
+      "password": "hashed_pwd_98",
+      "school_year": "First Year"
+    },
+    {
+      "username": "tech_user_99",
+      "password": "hashed_pwd_99",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "tech_user_100",
+      "password": "hashed_pwd_100",
+      "school_year": "Junior"
+    },
+    {
+      "username": "lisa_anderson",
+      "password": "hashed_pwd_101",
+      "school_year": "Junior"
+    },
+    {
+      "username": "james_taylor",
+      "password": "hashed_pwd_102",
+      "school_year": "Senior"
+    },
+    {
+      "username": "amy_thomas",
+      "password": "hashed_pwd_103",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "robert_jackson",
+      "password": "hashed_pwd_104",
+      "school_year": "First Year"
+    },
+    {
+      "username": "jennifer_white",
+      "password": "hashed_pwd_105",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "david_harris",
+      "password": "hashed_pwd_106",
+      "school_year": "Junior"
+    },
+    {
+      "username": "michelle_martin",
+      "password": "hashed_pwd_107",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "kevin_thompson",
+      "password": "hashed_pwd_108",
+      "school_year": "Senior"
+    },
+    {
+      "username": "jessica_clark",
+      "password": "hashed_pwd_109",
+      "school_year": "PhD Year 1"
+    },
+    {
+      "username": "brian_rodriguez",
+      "password": "hashed_pwd_110",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "amanda_lewis",
+      "password": "hashed_pwd_111",
+      "school_year": "First Year"
+    },
+    {
+      "username": "steven_walker",
+      "password": "hashed_pwd_112",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "laura_hall",
+      "password": "hashed_pwd_113",
+      "school_year": "Junior"
+    },
+    {
+      "username": "matthew_allen",
+      "password": "hashed_pwd_114",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "ashley_young",
+      "password": "hashed_pwd_115",
+      "school_year": "Senior"
+    },
+    {
+      "username": "john_king",
+      "password": "hashed_pwd_116",
+      "school_year": "PhD Year 2"
+    },
+    {
+      "username": "samantha_wright",
+      "password": "hashed_pwd_117",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "daniel_lopez",
+      "password": "hashed_pwd_118",
+      "school_year": "First Year"
+    },
+    {
+      "username": "megan_hill",
+      "password": "hashed_pwd_119",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "ryan_green",
+      "password": "hashed_pwd_120",
+      "school_year": "Junior"
+    },
+    {
+      "username": "nicole_adams",
+      "password": "hashed_pwd_121",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "jason_baker",
+      "password": "hashed_pwd_122",
+      "school_year": "Senior"
+    },
+    {
+      "username": "rachel_nelson",
+      "password": "hashed_pwd_123",
+      "school_year": "PhD Year 3"
+    },
+    {
+      "username": "timothy_carter",
+      "password": "hashed_pwd_124",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "heather_mitchell",
+      "password": "hashed_pwd_125",
+      "school_year": "First Year"
+    },
+    {
+      "username": "jacob_perez",
+      "password": "hashed_pwd_126",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "brittany_roberts",
+      "password": "hashed_pwd_127",
+      "school_year": "Junior"
+    },
+    {
+      "username": "andrew_turner",
+      "password": "hashed_pwd_128",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "lauren_phillips",
+      "password": "hashed_pwd_129",
+      "school_year": "Senior"
+    },
+    {
+      "username": "joshua_campbell",
+      "password": "hashed_pwd_130",
+      "school_year": "PhD Year 1"
+    },
+    {
+      "username": "maria_parker",
+      "password": "hashed_pwd_131",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "brandon_evans",
+      "password": "hashed_pwd_132",
+      "school_year": "First Year"
+    },
+    {
+      "username": "stephanie_edwards",
+      "password": "hashed_pwd_133",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "justin_collins",
+      "password": "hashed_pwd_134",
+      "school_year": "Junior"
+    },
+    {
+      "username": "olivia_stewart",
+      "password": "hashed_pwd_135",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "dylan_sanchez",
+      "password": "hashed_pwd_136",
+      "school_year": "Senior"
+    },
+    {
+      "username": "hannah_morris",
+      "password": "hashed_pwd_137",
+      "school_year": "PhD Year 2"
+    },
+    {
+      "username": "nathan_rogers",
+      "password": "hashed_pwd_138",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "alexis_reed",
+      "password": "hashed_pwd_139",
+      "school_year": "First Year"
+    },
+    {
+      "username": "tyler_cook",
+      "password": "hashed_pwd_140",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "kayla_morgan",
+      "password": "hashed_pwd_141",
+      "school_year": "Junior"
+    },
+    {
+      "username": "jose_bell",
+      "password": "hashed_pwd_142",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "jordan_murphy",
+      "password": "hashed_pwd_143",
+      "school_year": "Senior"
+    },
+    {
+      "username": "madison_rivera",
+      "password": "hashed_pwd_144",
+      "school_year": "PhD Year 3"
+    },
+    {
+      "username": "austin_cooper",
+      "password": "hashed_pwd_145",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "sophia_richardson",
+      "password": "hashed_pwd_146",
+      "school_year": "First Year"
+    },
+    {
+      "username": "zachary_cox",
+      "password": "hashed_pwd_147",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "victoria_howard",
+      "password": "hashed_pwd_148",
+      "school_year": "Junior"
+    },
+    {
+      "username": "gabriel_ward",
+      "password": "hashed_pwd_149",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "natalie_torres",
+      "password": "hashed_pwd_150",
+      "school_year": "Senior"
+    },
+    {
+      "username": "mason_peterson",
+      "password": "hashed_pwd_151",
+      "school_year": "PhD Year 1"
+    },
+    {
+      "username": "alyssa_gray",
+      "password": "hashed_pwd_152",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "elijah_ramirez",
+      "password": "hashed_pwd_153",
+      "school_year": "First Year"
+    },
+    {
+      "username": "grace_james",
+      "password": "hashed_pwd_154",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "logan_watson",
+      "password": "hashed_pwd_155",
+      "school_year": "Junior"
+    },
+    {
+      "username": "chloe_brooks",
+      "password": "hashed_pwd_156",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "ethan_kelly",
+      "password": "hashed_pwd_157",
+      "school_year": "Senior"
+    },
+    {
+      "username": "isabella_sanders",
+      "password": "hashed_pwd_158",
+      "school_year": "PhD Year 2"
+    },
+    {
+      "username": "jackson_price",
+      "password": "hashed_pwd_159",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "avery_bennett",
+      "password": "hashed_pwd_160",
+      "school_year": "First Year"
+    },
+    {
+      "username": "riley_wood",
+      "password": "hashed_pwd_161",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "emma_barnes",
+      "password": "hashed_pwd_162",
+      "school_year": "Junior"
+    },
+    {
+      "username": "noah_ross",
+      "password": "hashed_pwd_163",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "mia_henderson",
+      "password": "hashed_pwd_164",
+      "school_year": "Senior"
+    },
+    {
+      "username": "william_coleman",
+      "password": "hashed_pwd_165",
+      "school_year": "PhD Year 3"
+    },
+    {
+      "username": "ava_jenkins",
+      "password": "hashed_pwd_166",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "liam_perry",
+      "password": "hashed_pwd_167",
+      "school_year": "First Year"
+    },
+    {
+      "username": "charlotte_powell",
+      "password": "hashed_pwd_168",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "oliver_long",
+      "password": "hashed_pwd_169",
+      "school_year": "Junior"
+    },
+    {
+      "username": "amelia_patterson",
+      "password": "hashed_pwd_170",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "lucas_hughes",
+      "password": "hashed_pwd_171",
+      "school_year": "Senior"
+    },
+    {
+      "username": "harper_flores",
+      "password": "hashed_pwd_172",
+      "school_year": "PhD Year 1"
+    },
+    {
+      "username": "henry_washington",
+      "password": "hashed_pwd_173",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "evelyn_butler",
+      "password": "hashed_pwd_174",
+      "school_year": "First Year"
+    },
+    {
+      "username": "benjamin_simmons",
+      "password": "hashed_pwd_175",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "elizabeth_foster",
+      "password": "hashed_pwd_176",
+      "school_year": "Junior"
+    },
+    {
+      "username": "mason_gonzales",
+      "password": "hashed_pwd_177",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "ella_bryant",
+      "password": "hashed_pwd_178",
+      "school_year": "Senior"
+    },
+    {
+      "username": "carter_alexander",
+      "password": "hashed_pwd_179",
+      "school_year": "PhD Year 2"
+    },
+    {
+      "username": "scarlett_russell",
+      "password": "hashed_pwd_180",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "sebastian_griffin",
+      "password": "hashed_pwd_181",
+      "school_year": "First Year"
+    },
+    {
+      "username": "luna_diaz",
+      "password": "hashed_pwd_182",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "owen_hayes",
+      "password": "hashed_pwd_183",
+      "school_year": "Junior"
+    },
+    {
+      "username": "layla_myers",
+      "password": "hashed_pwd_184",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "wyatt_ford",
+      "password": "hashed_pwd_185",
+      "school_year": "Senior"
+    },
+    {
+      "username": "zoey_hamilton",
+      "password": "hashed_pwd_186",
+      "school_year": "PhD Year 3"
+    },
+    {
+      "username": "jaxon_graham",
+      "password": "hashed_pwd_187",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "nora_sullivan",
+      "password": "hashed_pwd_188",
+      "school_year": "First Year"
+    },
+    {
+      "username": "leo_wallace",
+      "password": "hashed_pwd_189",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "lily_woods",
+      "password": "hashed_pwd_190",
+      "school_year": "Junior"
+    },
+    {
+      "username": "grayson_cole",
+      "password": "hashed_pwd_191",
+      "school_year": "Second Year"
+    },
+    {
+      "username": "hazel_west",
+      "password": "hashed_pwd_192",
+      "school_year": "Senior"
+    },
+    {
+      "username": "luke_jordan",
+      "password": "hashed_pwd_193",
+      "school_year": "PhD Year 1"
+    },
+    {
+      "username": "penelope_owens",
+      "password": "hashed_pwd_194",
+      "school_year": "Freshman"
+    },
+    {
+      "username": "tech_user_1",
+      "password": "hashed_pwd_195",
+      "school_year": "First Year"
+    },
+    {
+      "username": "tech_user_2",
+      "password": "hashed_pwd_196",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "tech_user_3",
+      "password": "hashed_pwd_197",
+      "school_year": "Junior"
+    },
+    {
+      "username": "tech_user_4",
+      "password": "hashed_pwd_198",
+      "school_year": "Senior"
+    },
+    {
+      "username": "tech_user_5",
+      "password": "hashed_pwd_199",
+      "school_year": "First Year"
+    },
+    {
+      "username": "tech_user_6",
+      "password": "hashed_pwd_200",
+      "school_year": "Sophomore"
+    },
+    {
+      "username": "jessica_rodriguez",
+      "password": "hashed_pwd_jessica",
+      "school_year": "Senior"
+    }
+  ]
+}
+
+
