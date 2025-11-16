@@ -5,26 +5,34 @@ db_name = "postgres"
 db_user = "courseaidadmin"
 db_pass = "courseaid5200"
 
-try: 
-    connection = psycopg2.connect(
-        host=db_host, 
-        database=db_name, 
-        user=db_user, 
-        password=db_pass,
-        port="5432"
-    )
-    cursor = connection.cursor()
+def connect():
+    try:
+        connection = psycopg2.connect(
+            host=db_host,
+            database=db_name,
+            user=db_user,
+            password=db_pass,
+            port="5432"
+        )
+        cursor = connection.cursor()
 
-    #execute queries with cursor 
-    cursor.execute('SELECT version();')
-    db_version = cursor.fetchone()
-    print(db_version)
-except psycopg2.Error as e:
-    print(f"Error connecting to PostgreSQL:{e}")
+        #execute queries with cursor
+        cursor.execute('SELECT version();')
+        db_version = cursor.fetchone()
+        print(db_version)
+    except psycopg2.Error as e:
+        print(f"Error connecting to PostgreSQL:{e}")
+        return
 
-finally:
-    if connection:
+    return cursor, connection
+
+
+def close(cursor, connection):
+
         cursor.close()
         connection.close()
         print("PostgreSQL connection closed.")
+
+
+
 
