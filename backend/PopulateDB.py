@@ -2,6 +2,7 @@ import json
 import os
 
 import db_connection
+
 from tqdm import tqdm
 from sentence_transformers import SentenceTransformer
 from pgvector.psycopg2 import register_vector
@@ -18,7 +19,7 @@ class populateDB:
 
         self.reviews = "../data_json/reviews/"
         self.votes = "../data_json/votes/"
-        self.model = SentenceTransformer("google/embeddinggemma-300m");
+        self.gemma_model = SentenceTransformer("google/embeddinggemma-300m")
 
 
     def populateCoursesTable(self, cursor):
@@ -149,7 +150,7 @@ class populateDB:
             documents = cursor.fetchall()
             for record in tqdm(documents, desc="Populating course embeddings"):
                 course_number = record[0]
-                embeddings = self.model.encode_document(record[1])
+                embeddings = self.gemma_model.encode_document(record[1])
 
 
                 cursor.execute("INSERT INTO course_embeddings (course_id, embedding) VALUES (%s, %s)",
@@ -169,21 +170,19 @@ class populateDB:
             documents = cursor.fetchall()
             for record in tqdm(documents, desc="Populating review embeddings"):
                 review_id = record[0]
-                embeddings = self.model.encode_document(record[1])
-
 
                 cursor.execute("INSERT INTO review_embeddings (review_id, embedding) VALUES (%s, %s)",
-                               (review_id, embeddings)
-                               )
+                               (review_id, self.gemma_model.encode_document(record[1])
+                               ))
 
         except Exception as e:
-            print("Failed to populate review embeddings table: "+e)
+            print("Failed to populate review embeddings table: "+str(e))
 
     def populateVotesTable(self, cursor):
 
         try:
 
-            files = os.listdir(self.votes)
+            files = [f for f in os.listdir(self.votes) if f.endswith(".json")]
 
             for file in tqdm(files, desc="Processing files"):
                 with open(os.path.join(self.votes, file), "r") as f:
@@ -195,13 +194,10 @@ class populateDB:
 
 
                     cursor.execute(
-                        '''INSERT INTO public.votes(username, course_number, instructor_first, instructor_last, 
-                                                           vote_type)
-                           VALUES (%s, %s, %s, %s, %s)''',
+                        '''INSERT INTO public.votes(vote_id, review_id, username, vote_type)
+                           VALUES (%s, %s, %s, %s)''',
 
-                        (record["username"],record["course_number"],
-                         record["instructor_first"], record["instructor_last"],
-                         record["vote_type"],)
+                        (record["vote_id"],record["review_id"],record["username"],record["vote_type"])
                     )
 
             print("Successfully populated votes table")
@@ -300,8 +296,8 @@ class populateDB:
 if __name__ == "__main__":
     cursor, connection = db_connection.connect()
 
-    #change the name of the table you want to populate
-    populateDB().populateUserToCourseTable(cursor)
+    # change the name of the table you want to populate
+    populateDB().populateVotesTable(cursor)
     connection.commit()
 
     cursor.close()
