@@ -3,6 +3,7 @@ import os
 
 import db_connection
 
+
 from tqdm import tqdm
 from sentence_transformers import SentenceTransformer
 from pgvector.psycopg2 import register_vector

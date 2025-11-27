@@ -1,18 +1,17 @@
 import psycopg2
+import os
+from dotenv import load_dotenv
 
-db_host = "courseaid-db.cnk8wwwum9xd.us-east-2.rds.amazonaws.com"
-db_name = "postgres"
-db_user = "courseaidadmin"
-db_pass = "courseaid5200"
+load_dotenv()
 
 def connect():
     try:
         connection = psycopg2.connect(
-            host=db_host,
-            database=db_name,
-            user=db_user,
-            password=db_pass,
-            port="5432"
+            host=os.getenv('DB_HOST'),
+            database=os.getenv('DB_NAME'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            port=os.getenv('DB_PORT')
         )
         cursor = connection.cursor()
 
@@ -24,12 +23,11 @@ def connect():
         print(f"Error connecting to PostgreSQL:{e}")
         return
 
-    return cursor, connection
+    return connection
 
 
-def close(cursor, connection):
+def close(connection):
 
-        cursor.close()
         connection.close()
         print("PostgreSQL connection closed.")
 
