@@ -1,9 +1,13 @@
+import os 
 import psycopg2
+from dotenv import load_dotenv
 
-db_host = "courseaid-db.cnk8wwwum9xd.us-east-2.rds.amazonaws.com"
-db_name = "postgres"
-db_user = "courseaidadmin"
-db_pass = "courseaid5200"
+load_dotenv()
+
+db_host = os.getenv("DB_HOST")
+db_name = os.getenv("DB_NAME")
+db_user = os.getenv("DB_USER")
+db_pass = os.getenv("DB_PASSWORD")
 
 def connect():
     try:
@@ -20,19 +24,12 @@ def connect():
         cursor.execute('SELECT version();')
         db_version = cursor.fetchone()
         print(db_version)
+        print("connected successfully")
     except psycopg2.Error as e:
         print(f"Error connecting to PostgreSQL:{e}")
         return
+    return connection
 
-    return cursor, connection
-
-
-def close(cursor, connection):
-
-        cursor.close()
+def close(connection):
         connection.close()
         print("PostgreSQL connection closed.")
-
-
-
-
