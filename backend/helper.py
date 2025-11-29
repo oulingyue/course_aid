@@ -117,4 +117,34 @@ def get_reviews_for_instructor(cursor, instructor_first, instructor_last, user_i
     return result
 
 
+def get_all_comments_for_instructor(cursor, instructor_first, instructor_last):
+    all_reviews = '''
+                  select comment \
+                  from review \
+                  where instructor_first = %s \
+                    and instructor_last = %s \
+
+                  '''
+
+    try:
+        cursor.execute(all_reviews, [instructor_first, instructor_last])
+        comments = cursor.fetchall()
+        if len(comments) == 0:
+            return None
+
+        else:
+            return comments
+
+    except psycopg2.Error as e:
+        raise Exception(f"Error fetching reviews: {e}")
+
+
+
+
+
+
+
+
+
+
 

@@ -1,6 +1,6 @@
 import os
 
-from fastjsonschema import validate
+
 from flask import Flask, request, jsonify, render_template, session
 from flask_cors import CORS
 from auth import auth
@@ -394,7 +394,10 @@ def delete_reviews(review_id):
 
 
 
-
+@app.route("/assistant", methods=["GET","POST"])
+@login_required
+def assistant():
+    return render_template("assistant.html")
 
 
 if __name__ == '__main__':
