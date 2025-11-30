@@ -1,5 +1,7 @@
 import helper
 import asyncio
+import json
+from tqdm import tqdm
 from ollama import chat, AsyncClient
 from db_connection import connect
 from typing import List
@@ -14,15 +16,18 @@ class AssistantRoles:
                             "What are some of the positively reviewed professors ?"
                             "Recommend a cirriculum for a field' "
                             )
-
+        self.client = AsyncClient()
     async def chat(self, messages: list[dict]):
 
-        async for part in await AsyncClient().chat(model=self.model, messages=messages, stream=True,
+        content = []
+
+        async for part in await self.client.chat(model=self.model, messages=messages, stream=True,
                                                    options = {
                                                        'system': self.system_prompt
                                                    }):
+            content.append(part['message']['content'])
 
-            print(part['message']['content'], end='', flush=True)
+        return "".join(content)
 
     def create_summary_prompt(self, contents: list[str]):
         messages = []
@@ -35,17 +40,28 @@ class AssistantRoles:
 
         return messages
 
-    def generate_consensus_summary(self, instructor_first: str, instructor_last: str):
+    async def generate_consensus_summary(self, instructor_first: str, instructor_last: str):
 
         comments = helper.get_all_comments_for_instructor(self.conn.cursor(), instructor_first, instructor_last)
 
         if not comments:
-            print('No comments found for this instructor')
+            return "No reviews yet"
 
         else:
             messages = self.create_summary_prompt(comments)
 
-            asyncio.run(self.chat(messages))
+            result = await self.chat(messages)
+            return result
+
+    async def process_all_instructors(self,rows):
+        results = []
+        for row in tqdm(rows, total=len(rows)):
+            result = await self.generate_consensus_summary(row[0], row[1])
+            results.append({"first": row[0], "last": row[1], "summary": result})
+        return results
+
+    def update_summary_cache(self, ):
+        pass
 
     def recommend_cirriculum(self):
         pass
@@ -60,5 +76,23 @@ class AssistantRoles:
 # example usage
 if __name__ == '__main__':
     deepseek = AssistantRoles()
-    deepseek.generate_consensus_summary('Maria', 'Garcia')
+    # query = '''
+    #         select first_name, last_name \
+    #         from instructors \
+    #         '''
+    #
+    # cursor = deepseek.conn.cursor()
+    # cursor.execute(query)
+    # rows = cursor.fetchall()
+    #
+    # with open('summary_cache.json', 'r') as outfile:
+    #     data = json.load(outfile)
+    #
+    #
+    # new_summaries = asyncio.run(deepseek.process_all_instructors(rows))
+    # data["data"].extend(new_summaries)
+    #
+    # with open('summary_cache.json', 'w') as outfile:
+    #     json.dump(data, outfile, indent=2)
+
 

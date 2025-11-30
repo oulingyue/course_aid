@@ -1,3 +1,5 @@
+import json
+
 import psycopg2
 def validate_instructor(cursor, instructor_name):
     instructor_first = instructor_name.split(" ")[0]
@@ -16,6 +18,54 @@ def validate_instructor(cursor, instructor_name):
 
     return None
 
+def get_average_rating(cursor, instructor_name):
+    instructor_first, instructor_last = validate_instructor(cursor, instructor_name)
+
+    avg_query = '''
+    select round(avg(rating),2) from review where instructor_first=%s and instructor_last=%s
+    '''
+    try:
+        cursor.execute(avg_query, (instructor_first, instructor_last))
+
+        avg_rating = cursor.fetchall()[0][0]
+        if avg_rating:
+            return avg_rating
+        return None
+    except psycopg2.ProgrammingError as e:
+        raise Exception(f"{e}")
+
+
+def get_courses_of_instructor(cursor, instructor_name):
+    instructor_first, instructor_last = validate_instructor(cursor, instructor_name)
+
+    courses_of_instructor_query = '''
+    select course_number from course_section where instructor_first=%s and instructor_last=%s
+    '''
+
+    try:
+        cursor.execute(courses_of_instructor_query, (instructor_first, instructor_last))
+        rows = cursor.fetchall()
+        courses_of_instructor = [row[0] for row in rows]
+        return courses_of_instructor
+    except psycopg2.ProgrammingError as e:
+        raise Exception(f"{e}")
+
+def get_departments_of_instructor(cursor, instructor_name):
+
+    instructor_first, instructor_last = validate_instructor(cursor, instructor_name)
+
+    departments_of_instructor_query = '''
+    select department_name from instructor_to_department where instructor_first=%s and instructor_last=%s
+    
+    '''
+
+    try:
+        cursor.execute(departments_of_instructor_query, (instructor_first, instructor_last))
+        rows= cursor.fetchall()
+        departments_of_instructor = [row[0] for row in rows]
+        return departments_of_instructor
+    except psycopg2.ProgrammingError as e:
+        raise Exception(f"{e}")
 
 def get_reviews_for_instructor(cursor, instructor_first, instructor_last, user_id):
 
@@ -140,6 +190,14 @@ def get_all_comments_for_instructor(cursor, instructor_first, instructor_last):
 
 
 
+def get_summary(instructor_first, instructor_last):
+
+    with open("summary_cache.json", "r") as file:
+        summary_cache = json.load(file)
+
+    for data in summary_cache["data"]:
+        if data["first"] == instructor_first and data["last"] == instructor_last:
+            return data["summary"]
 
 
 

@@ -1,6 +1,6 @@
 import os
 
-
+import asyncio
 from flask import Flask, request, jsonify, render_template, session
 from flask_cors import CORS
 from auth import auth
@@ -8,6 +8,7 @@ import psycopg2
 from functools import wraps
 import helper
 import db_connection
+from assistant_roles import AssistantRoles
 from dotenv import load_dotenv
 from datetime import datetime, timezone
 load_dotenv()
@@ -53,15 +54,36 @@ def get_reviews(instructor_name):
 
     if (helper.validate_instructor(cursor, instructor_name)):
         instructor_first, instructor_last = helper.validate_instructor(cursor, instructor_name)
+
     else:
         message += "Instructor does not exist"
         cursor.close()
         conn.close()
         return render_template("reviews.html", reviews=[], message=message)
 
-    username = session.get("user_id")
-
     try:
+        consensus_summary = helper.get_summary(instructor_first, instructor_last)
+        departments = helper.get_departments_of_instructor(cursor, instructor_name)
+        courses = helper.get_courses_of_instructor(cursor, instructor_name)
+        avg_rating = helper.get_average_rating(cursor, instructor_name)
+
+        if not departments:
+            departments = []
+        if not courses:
+            courses = []
+        if not avg_rating:
+            avg_rating = 'NA'
+
+        username = session.get("user_id")
+
+        instructor_info = {
+            'first_name': instructor_first,
+            'last_name': instructor_last,
+            'courses': courses,
+            'departments': departments,
+            'avg_rating': avg_rating,
+            'consensus_summary': consensus_summary
+        }
         result = helper.get_reviews_for_instructor(cursor, instructor_first, instructor_last, username)
 
         if not result:
@@ -70,6 +92,14 @@ def get_reviews(instructor_name):
     except Exception as e:
         message = f"Error getting reviews for {instructor_name}: {e}"
         result = []
+        instructor_info = {
+            'first_name': instructor_first,
+            'last_name': instructor_last,
+            'courses': [],
+            'departments': [],
+            'avg_rating': 'N/A',
+            'consensus_summary': "N/A"
+        }
 
     finally:
         cursor.close()
@@ -78,7 +108,8 @@ def get_reviews(instructor_name):
     return render_template("reviews.html",
                            reviews=result,
                            message=message,
-                           instructor_name=f"{instructor_first} {instructor_last}")
+                           instructor_name=f"{instructor_first} {instructor_last}",
+                           instructor_info=instructor_info,)
 
 
 @app.route("/reviews/<int:review_id>/vote", methods=["POST"])
