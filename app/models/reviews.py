@@ -1,6 +1,35 @@
 import psycopg2
+from sentence_transformers import SentenceTransformer
+from torch.distributed._shard.sharding_spec.chunk_sharding_spec_ops import embedding
+
 
 class Reviews:
+
+    def __init__(self):
+
+       self.gemma_model = SentenceTransformer("google/embeddinggemma-300m")
+
+
+    def insert_document_with_embedding(self, cursor, comment, rating, course_number, instructor_first, instructor_last,
+                                       username):
+
+        cursor.execute("""
+                       INSERT INTO review (comment, rating, course_number, instructor_first, instructor_last, username)
+                       VALUES (%s, %s, %s, %s, %s, %s) RETURNING id
+                       """, (comment, rating, course_number, instructor_first, instructor_last, username))
+
+        review_id = cursor.fetchone()[0]
+
+        embedding = self.gemma_model.encode_document(comment)
+
+        cursor.execute("""
+                       INSERT INTO review_embeddings (review_id, embedding)
+                       VALUES (%s, %s)
+                       """, (review_id, embedding.tolist()))
+
+        cursor.commit()
+
+
 
     @staticmethod
     def get_reviews_for_instructor(cursor, instructor_first, instructor_last, user_id):

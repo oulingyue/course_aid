@@ -1,9 +1,7 @@
 import json
-import psycopg2
+import os
 from functools import wraps
-from flask import request, jsonify, session
-from course_aid.app.config import db_connection
-from course_aid.app.models.assistant import AssistantRoles
+from flask import jsonify, session
 
 
 def login_required(f):
@@ -44,8 +42,10 @@ def check_for_summary(cursor, instructor_name):
 
 
 def get_consensus_summary(instructor_first, instructor_last):
+    BASE_DIR  = os.path.dirname(os.path.abspath(__file__))
+    CACHE_FILE = os.path.join(BASE_DIR, 'summary_cache.json')
 
-    with open("utils/summary_cache.json", "r") as file:
+    with open(CACHE_FILE, "r") as file:
         summary_cache = json.load(file)
 
     for data in summary_cache["data"]:
@@ -55,8 +55,9 @@ def get_consensus_summary(instructor_first, instructor_last):
 
 
 def update_summary_cache(cursor):
+    from course_aid.app.models.assistant import AssistantRoles
     deepseek = AssistantRoles()
-    with open("utils/summary_cache.json", "r") as file:
+    with open("utils/summary_cache.json", "rw") as file:
         summary_cache = json.load(file)
 
     for data in summary_cache["data"]:

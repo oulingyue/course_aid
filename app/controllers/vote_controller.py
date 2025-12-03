@@ -49,7 +49,7 @@ def handle_votes(conn, review_id):
         counts = Votes.count_votes(cursor, review_id)
 
         cursor.close()
-        conn.close()
+
 
         return jsonify({
             'success': True,
@@ -62,7 +62,7 @@ def handle_votes(conn, review_id):
     except psycopg2.Error as e:
         conn.rollback()
         cursor.close()
-        conn.close()
+
         return jsonify({
             'success': False,
             'message': f'Database error: {str(e)}'
@@ -71,7 +71,7 @@ def handle_votes(conn, review_id):
     except Exception as e:
         conn.rollback()
         cursor.close()
-        conn.close()
+
         return jsonify({
             'success': False,
             'message': f'Error: {str(e)}'

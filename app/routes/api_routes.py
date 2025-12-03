@@ -1,25 +1,12 @@
-import os
-
-from flask import Flask
-from flask_cors import CORS
-from course_aid.app.middleware.auth import auth
-from course_aid.app.controllers import vote_controller, review_controller, assistant_controller
+from course_aid.app import app, conn
+from course_aid.app.controllers import vote_controller, review_controller, assistant_controller, index_controller
 from course_aid.app.utils.helper import login_required
-from course_aid.app.config import db_connection
-from dotenv import load_dotenv
 
-load_dotenv()
 
-app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY")
-
-app.register_blueprint(auth)
-
-CORS(app)
-
-conn = db_connection.connect()
-
-@app.route("/instructor/<instructor_name>/review", methods=["GET"])
+@app.route('/')
+def index():
+    return index_controller.index()
+@app.route("/instructor/<instructor_name>/reviews", methods=["GET"])
 @login_required
 def instructor_review(instructor_name):
     return review_controller.get_reviews_for_instructor(conn, instructor_name)

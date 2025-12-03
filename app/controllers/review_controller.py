@@ -1,10 +1,10 @@
-import os
+
 import psycopg2
-from dotenv.main import rewrite
-from flask import Flask, request, jsonify, render_template, session
-from course_aid.app.utils import helper
+from flask import request, jsonify, render_template, session
 from course_aid.app.models.intructors import Instructor
 from course_aid.app.models.reviews import Reviews
+from course_aid.app.utils.helper import validate_instructor, get_consensus_summary
+
 
 def get_user_reviews(conn):
         cursor = conn.cursor()
@@ -36,7 +36,7 @@ def get_user_reviews(conn):
 
             cursor.close()
 
-        return render_template("view/templates/pastreviews.html", reviews=result,
+        return render_template("pastreviews.html", reviews=result,
                                message = message, message_type="info")
 
 
@@ -50,23 +50,34 @@ def get_reviews_for_instructor(conn, instructor_name):
     cursor = conn.cursor()
 
     message = ""
-    instructor_first = ""
-    instructor_last = ""
 
-    if (helper.validate_instructor(cursor, instructor_name)):
-        instructor_first, instructor_last = helper.validate_instructor(cursor, instructor_name)
+    validate_instructor_results = validate_instructor(cursor, instructor_name)
+
+    if (validate_instructor_results):
+        instructor_first, instructor_last = validate_instructor_results
 
     else:
         message += "Instructor does not exist"
         cursor.close()
         conn.close()
-        return render_template("view/templates/reviews.html", reviews=[], message=message)
+        return render_template("professor_reviews.html", reviews=[], message=message)
 
     try:
-        consensus_summary = helper.get_consensus_summary(instructor_first, instructor_last)
+        print("getting summary...")
+        consensus_summary = get_consensus_summary(instructor_first, instructor_last)
+        print("got summary")
+
+        print("getting departments")
         departments = Instructor.get_departments_of_instructor(cursor, instructor_name)
+        print("got departments")
+
+        print("getting courses")
         courses = Instructor.get_courses_of_instructor(cursor, instructor_name)
+        print("got courses")
+
+        print("getting avg rating")
         avg_rating = Instructor.get_average_rating(cursor, instructor_name)
+        print("got avg rating")
 
         if not departments:
             departments = []
@@ -85,7 +96,9 @@ def get_reviews_for_instructor(conn, instructor_name):
             'avg_rating': avg_rating,
             'consensus_summary': consensus_summary
         }
+        print("getting reviews")
         result = Reviews.get_reviews_for_instructor(cursor, instructor_first, instructor_last, username)
+        print("got reviews")
 
         if not result:
             message += "No reviews found for this instructor"
@@ -104,9 +117,8 @@ def get_reviews_for_instructor(conn, instructor_name):
 
     finally:
         cursor.close()
-        conn.close()
 
-    return render_template("view/templates/reviews.html",
+    return render_template("professor_reviews.html",
                            reviews=result,
                            message=message,
                            instructor_name=f"{instructor_first} {instructor_last}",
@@ -145,7 +157,7 @@ def edit_review(review_id, conn):
         conn.commit()
 
         cursor.close()
-        conn.close()
+
 
         message = f"Review {review_id} successfully updated"
 
@@ -212,7 +224,7 @@ def delete_review(review_id, conn):
         message = f"Database error: {review_id}: {e}"
         conn.rollback()
         cursor.close()
-        conn.close()
+
         return jsonify({
             'success': False,
             'message': message
@@ -222,7 +234,7 @@ def delete_review(review_id, conn):
         message = f"Error getting reviews for {review_id}: {e}"
         conn.rollback()
         cursor.close()
-        conn.close()
+
 
         return jsonify({
             'success': False,
