@@ -346,9 +346,8 @@
 
                     <p>Here's what I can answer</p>
 
-                    <div class="suggestion-chip" onclick="sendSuggestion('Recommend professors to learn from for a course')">Recommend professors to learn from for a course</div>
-                    <div class="suggestion-chip" onclick="sendSuggestion('What are some of the positively reviewed professors ?')">What are some of the positively reviewed professors ?</div>
-                    <div class="suggestion-chip" onclick="sendSuggestion('Recommend a cirriculum for a field')">Recommend me a cirriculum for a field</div>
+                    <div  id="professor-recommendation" class="suggestion-chip" onclick="sendSuggestion('Recommend professors to learn from for a course')">Recommend professors to learn from for a course</div>
+                    <div id="cirriculum-reccommendation" class="suggestion-chip" onclick="sendSuggestion('Recommend a cirriculum for a field')">Recommend me a cirriculum for a field</div>
                 </div>
             </div>
 
@@ -385,7 +384,6 @@
         const sendButton = document.getElementById('sendButton');
         const typingIndicator = document.getElementById('typingIndicator');
 
-        // Auto-resize textarea
         chatInput.addEventListener('input', function() {
             this.style.height = 'auto';
             this.style.height = Math.min(this.scrollHeight, 120) + 'px';
@@ -409,7 +407,7 @@
         }
 
         function addMessage(content, isUser = false) {
-            // Remove welcome message if it exists
+
             const welcomeMsg = document.querySelector('.welcome-message');
             if (welcomeMsg) {
                 welcomeMsg.remove();
@@ -483,33 +481,8 @@
                 chatInput.focus();
             }, 1500);
 
-            // REPLACE THE ABOVE setTimeout WITH YOUR ACTUAL API CALL:
-            /*
-            try {
-                const response = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ message: message })
-                });
-
-                const data = await response.json();
-
-                hideTypingIndicator();
-                addMessage(data.response, false);
-                sendButton.disabled = false;
-                chatInput.focus();
-
-            } catch (error) {
-                hideTypingIndicator();
-                addMessage('Sorry, I encountered an error. Please try again.', false);
-                sendButton.disabled = false;
-            }
-            */
         }
 
-        // Focus input on load
         window.addEventListener('load', () => {
             chatInput.focus();
         });
