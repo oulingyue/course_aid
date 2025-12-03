@@ -1,16 +1,14 @@
 import os
 
-import asyncio
 from flask import Flask, request, jsonify, render_template, session
 from flask_cors import CORS
-from auth import auth
+from course_aid.app.middleware.auth import auth
 import psycopg2
 from functools import wraps
 import helper
-import db_connection
-from assistant_roles import AssistantRoles
+from course_aid.app.config import db_connection
 from dotenv import load_dotenv
-from datetime import datetime, timezone
+
 load_dotenv()
 
 app = Flask(__name__)
@@ -37,7 +35,7 @@ def index():
     return render_template('base.html')
 
 
-@app.get("/<instructor_name>/reviews")
+@app.get("instructor/<instructor_name>/reviews")
 @login_required
 def get_reviews(instructor_name):
     '''
@@ -219,7 +217,7 @@ def handle_votes(review_id):
             'message': f'Error: {str(e)}'
         }), 500
 
-@app.route("/my_reviews")
+@app.route("/user_reviews")
 @login_required
 def get_user_reviews():
 
@@ -279,7 +277,7 @@ def get_user_reviews():
     return render_template("pastreviews.html", reviews=result,
                            message = message, message_type="info")
 
-@app.route("/my_reviews/<int:review_id>/edit", methods=["PATCH", "PUT"])
+@app.route("/user_reviews/<int:review_id>/edit", methods=["PATCH", "PUT"])
 @login_required
 def edit_reviews(review_id):
     '''
@@ -358,7 +356,7 @@ def edit_reviews(review_id):
 
 
 
-@app.route("/my_reviews/<int:review_id>/delete", methods=["DELETE"])
+@app.route("/user_reviews/<int:review_id>/delete", methods=["DELETE"])
 @login_required
 def delete_reviews(review_id):
     '''

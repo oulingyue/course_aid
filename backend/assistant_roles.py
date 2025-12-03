@@ -1,10 +1,9 @@
 import helper
-import asyncio
-import json
 from tqdm import tqdm
-from ollama import chat, AsyncClient
-from db_connection import connect
-from typing import List
+from ollama import AsyncClient
+from course_aid.app.config.db_connection import connect
+
+
 class AssistantRoles:
 
     def __init__(self):
