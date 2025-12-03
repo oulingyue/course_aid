@@ -1,5 +1,5 @@
-import os 
 import psycopg2
+import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -8,6 +8,7 @@ db_host = os.getenv("DB_HOST")
 db_name = os.getenv("DB_NAME")
 db_user = os.getenv("DB_USER")
 db_pass = os.getenv("DB_PASSWORD")
+
 
 def connect():
     try:
@@ -30,6 +31,9 @@ def connect():
         return
     return connection
 
+
+
 def close(connection):
+
         connection.close()
         print("PostgreSQL connection closed.")

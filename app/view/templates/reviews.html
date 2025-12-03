@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Reviews - {{ instructor_name|default('Instructor') }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .instructor-profile {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .profile-details {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .profile-rating {
+            font-size: 18px;
+            color: #f39c12;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rating-value {
+            font-size: 24px;
+        }
+
+        .consensus-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-style: italic;
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        .consensus-summary.loading {
+            color: #999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .loading-spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #e0e0e0;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info-section {
+            display: flex;
+            gap: 10px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #555;
+            min-width: 100px;
+        }
+
+        .info-content {
+            color: #666;
+            flex: 1;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .info-list li {
+            background: #e3f2fd;
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 14px;
+            color: #1565c0;
+            font-weight: 500;
+        }
+
+        .info-list.dept li {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .review-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .course-number {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .dates {
+            text-align: right;
+        }
+
+        .dates div {
+            margin-bottom: 3px;
+        }
+
+        .rating {
+            color: #f39c12;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .comment {
+            margin: 15px 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .vote-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .vote-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .vote-btn:hover:not(:disabled) {
+            border-color: #999;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .vote-btn.active-upvote {
+            background: #27ae60;
+            border-color: #27ae60;
+            color: white;
+        }
+
+        .vote-btn.active-upvote:hover {
+            background: #229954;
+            border-color: #229954;
+        }
+
+        .vote-btn.active-downvote {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            color: white;
+        }
+
+        .vote-btn.active-downvote:hover {
+            background: #c0392b;
+            border-color: #c0392b;
+        }
+
+        .vote-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .vote-count {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .message {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+            background: #e3f2fd;
+            color: #1565c0;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .message.error {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .message.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .static-message {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .static-message.info {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .static-message.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .static-message.error {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .no-reviews {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .instructor-profile {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .profile-picture {
+                width: 120px;
+                height: 120px;
+                font-size: 48px;
+            }
+
+            .profile-name {
+                font-size: 24px;
+            }
+
+            .info-section {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .info-list {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reviews for {{ instructor_name|default('Instructor') }}</h1>
+
+        <div id="message" class="message"></div>
+
+        {% if message %}
+        <div class="static-message {{ message_type|default('info') }}">{{ message }}</div>
+        {% endif %}
+
+        <!-- Instructor Profile Section -->
+        {% if instructor_info %}
+        <div class="instructor-profile">
+            <div class="profile-picture">
+                👨‍🏫
+            </div>
+            <div class="profile-details">
+                <div class="profile-name">
+                    {{ instructor_info.first_name }} {{ instructor_info.last_name }}
+                </div>
+                <div class="profile-rating">
+                    <span class="rating-value">{{ instructor_info.avg_rating }}</span>
+                    <span>⭐ Average Rating</span>
+                </div>
+
+
+                {% if instructor_info.consensus_summary %}
+                <div class="consensus-summary">
+                    {{ instructor_info.consensus_summary }}
+                </div>
+                {% else %}
+                <div class="consensus-summary loading">
+                    <div class="loading-spinner"></div>
+                    Loading consensus summary...
+                </div>
+                {% endif %}
+
+                <div class="profile-info">
+                    <div class="info-section">
+                        <div class="info-label">Courses:</div>
+                        <div class="info-content">
+                            <ul class="info-list">
+                                {% for course in instructor_info.courses %}
+                                <li>{{ course }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info-section">
+                        <div class="info-label">Departments:</div>
+                        <div class="info-content">
+                            <ul class="info-list dept">
+                                {% for dept in instructor_info.departments %}
+                                <li>{{ dept }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if reviews %}
+        <div id="reviews-container">
+            {% for review in reviews %}
+            <div class="review-card">
+                <div class="review-header">
+                    <div>
+                        <span class="course-number">{{ review.course_number }}</span>
+                    </div>
+                    <div class="dates">
+                        <div>Last Updated: {{ review.last_updated }}</div>
+                        <div>Posted: {{ review.post_time }}</div>
+                    </div>
+                </div>
+                <div class="rating">Rating: {{ review.rating }} ⭐</div>
+                <div class="comment">{{ review.comment }}</div>
+                <div class="vote-buttons">
+                    <button class="vote-btn {% if review.user_vote == 'upvote' %}active-upvote{% endif %}"
+                            data-review-id="{{ review.review_id }}"
+                            data-vote-type="upvote">
+                        👍 <span class="vote-count">{{ review.upvotes }}</span>
+                    </button>
+                    <button class="vote-btn {% if review.user_vote == 'downvote' %}active-downvote{% endif %}"
+                            data-review-id="{{ review.review_id }}"
+                            data-vote-type="downvote">
+                        👎 <span class="vote-count">{{ review.downvotes }}</span>
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-reviews">
+            <p>No reviews available yet.</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function showMessage(text, type = 'info') {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = 'message ' + type;
+            messageDiv.style.display = 'block';
+
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        async function handleVote(reviewId, voteType, button) {
+            const reviewCard = button.closest('.review-card');
+            const upvoteBtn = reviewCard.querySelector('[data-vote-type="upvote"]');
+            const downvoteBtn = reviewCard.querySelector('[data-vote-type="downvote"]');
+
+            try {
+                const response = await fetch('/reviews/' + reviewId + '/vote', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        vote_type: voteType
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    upvoteBtn.querySelector('.vote-count').textContent = data.upvotes;
+                    downvoteBtn.querySelector('.vote-count').textContent = data.downvotes;
+
+                    if (data.action === 'removed') {
+                        button.classList.remove('active-' + voteType);
+                        showMessage('Vote removed', 'success');
+                    } else if (data.action === 'changed') {
+                        upvoteBtn.classList.remove('active-upvote');
+                        downvoteBtn.classList.remove('active-downvote');
+                        button.classList.add('active-' + voteType);
+                        showMessage('Vote changed', 'success');
+                    } else if (data.action === 'added') {
+                        button.classList.add('active-' + voteType);
+                        showMessage('Vote recorded', 'success');
+                    }
+                } else {
+                    showMessage(data.message || 'Failed to record vote', 'error');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Network error. Please try again.', 'error');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const voteButtons = document.querySelectorAll('.vote-btn');
+
+            voteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const reviewId = parseInt(this.dataset.reviewId);
+                    const voteType = this.dataset.voteType;
+                    handleVote(reviewId, voteType, this);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

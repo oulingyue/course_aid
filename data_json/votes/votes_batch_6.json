@@ -1,641 +1,104 @@
 {
-  "votes_deduplicated_batch_6": [
-    {
-      "username": "neo_smith",
-      "course_number": "EE5410",
-      "instructor_first": "Maria",
-      "instructor_last": "Garcia",
-      "vote_type": 1
-    },
-    {
-      "username": "trinity_jones",
-      "course_number": "DS5340",
-      "instructor_first": "John",
-      "instructor_last": "Smith",
-      "vote_type": 1
-    },
-    {
-      "username": "morpheus_brown",
-      "course_number": "ME5320",
-      "instructor_first": "James",
-      "instructor_last": "Thompson",
-      "vote_type": -1
-    },
-    {
-      "username": "oracle_davis",
-      "course_number": "STAT5330",
-      "instructor_first": "Thomas",
-      "instructor_last": "Wright",
-      "vote_type": 1
-    },
-    {
-      "username": "cipher_miller",
-      "course_number": "BME5220",
-      "instructor_first": "Jennifer",
-      "instructor_last": "Liu",
-      "vote_type": 1
-    },
-    {
-      "username": "tank_wilson",
-      "course_number": "CS5100",
-      "instructor_first": "Christopher",
-      "instructor_last": "Mitchell",
-      "vote_type": -1
-    },
-    {
-      "username": "dozer_moore",
-      "course_number": "MATH5320",
-      "instructor_first": "Paul",
-      "instructor_last": "Adams",
-      "vote_type": 1
-    },
-    {
-      "username": "mouse_taylor",
-      "course_number": "PHYS5420",
-      "instructor_first": "Patricia",
-      "instructor_last": "Nelson",
-      "vote_type": 1
-    },
-    {
-      "username": "switch_anderson",
-      "course_number": "BIO5120",
-      "instructor_first": "Jennifer",
-      "instructor_last": "Liu",
-      "vote_type": -1
-    },
-    {
-      "username": "apoc_thomas",
-      "course_number": "CHEM5200",
-      "instructor_first": "Robert",
-      "instructor_last": "Anderson",
-      "vote_type": 1
-    },
-    {
-      "username": "cypher_jackson",
-      "course_number": "EE5520",
-      "instructor_first": "Nancy",
-      "instructor_last": "Evans",
-      "vote_type": 1
-    },
-    {
-      "username": "link_white",
-      "course_number": "DS5100",
-      "instructor_first": "John",
-      "instructor_last": "Smith",
-      "vote_type": -1
-    },
-    {
-      "username": "niobe_harris",
-      "course_number": "CS5500",
-      "instructor_first": "William",
-      "instructor_last": "Brown",
-      "vote_type": 1
-    },
-    {
-      "username": "ghost_martin",
-      "course_number": "STAT5220",
-      "instructor_first": "Linda",
-      "instructor_last": "Martinez",
-      "vote_type": 1
-    },
-    {
-      "username": "ajax_thompson",
-      "course_number": "BME5350",
-      "instructor_first": "Karen",
-      "instructor_last": "Hall",
-      "vote_type": -1
-    },
-    {
-      "username": "ice_garcia",
-      "course_number": "MATH5110",
-      "instructor_first": "Emily",
-      "instructor_last": "Watson",
-      "vote_type": 1
-    },
-    {
-      "username": "mamba_martinez",
-      "course_number": "PHYS5310",
-      "instructor_first": "David",
-      "instructor_last": "Kim",
-      "vote_type": 1
-    },
-    {
-      "username": "lock_robinson",
-      "course_number": "BIO5340",
-      "instructor_first": "Daniel",
-      "instructor_last": "Clark",
-      "vote_type": -1
-    },
-    {
-      "username": "colt_clark",
-      "course_number": "CHEM5410",
-      "instructor_first": "Susan",
-      "instructor_last": "Lewis",
-      "vote_type": 1
-    },
-    {
-      "username": "vector_lewis",
-      "course_number": "EE5410",
-      "instructor_first": "Maria",
-      "instructor_last": "Garcia",
-      "vote_type": 1
-    },
-    {
-      "username": "sparks_walker",
-      "course_number": "DS5230",
-      "instructor_first": "Mark",
-      "instructor_last": "Robinson",
-      "vote_type": -1
-    },
-    {
-      "username": "ballard_hall",
-      "course_number": "ME5320",
-      "instructor_first": "James",
-      "instructor_last": "Thompson",
-      "vote_type": 1
-    },
-    {
-      "username": "soren_allen",
-      "course_number": "STAT5330",
-      "instructor_first": "Thomas",
-      "instructor_last": "Wright",
-      "vote_type": 1
-    },
-    {
-      "username": "rama_young",
-      "course_number": "BME5220",
-      "instructor_first": "Jennifer",
-      "instructor_last": "Liu",
-      "vote_type": -1
-    },
-    {
-      "username": "sati_king",
-      "course_number": "CS5800",
-      "instructor_first": "Michael",
-      "instructor_last": "Rodriguez",
-      "vote_type": 1
-    },
-    {
-      "username": "kamala_wright",
-      "course_number": "MATH5320",
-      "instructor_first": "Paul",
-      "instructor_last": "Adams",
-      "vote_type": 1
-    },
-    {
-      "username": "bane_lopez",
-      "course_number": "PHYS5420",
-      "instructor_first": "Patricia",
-      "instructor_last": "Nelson",
-      "vote_type": -1
-    },
-    {
-      "username": "magpie_hill",
-      "course_number": "BIO5120",
-      "instructor_first": "Jennifer",
-      "instructor_last": "Liu",
-      "vote_type": 1
-    },
-    {
-      "username": "merv_scott",
-      "course_number": "CHEM5200",
-      "instructor_first": "Robert",
-      "instructor_last": "Anderson",
-      "vote_type": 1
-    },
-    {
-      "username": "wurm_green",
-      "course_number": "EE5520",
-      "instructor_first": "Nancy",
-      "instructor_last": "Evans",
-      "vote_type": -1
-    },
-    {
-      "username": "coach_adams",
-      "course_number": "DS5340",
-      "instructor_first": "John",
-      "instructor_last": "Smith",
-      "vote_type": 1
-    },
-    {
-      "username": "agent_baker",
-      "course_number": "CS5100",
-      "instructor_first": "Christopher",
-      "instructor_last": "Mitchell",
-      "vote_type": 1
-    },
-    {
-      "username": "fury_gonzalez",
-      "course_number": "STAT5220",
-      "instructor_first": "Linda",
-      "instructor_last": "Martinez",
-      "vote_type": -1
-    },
-    {
-      "username": "councilor_nelson",
-      "course_number": "BME5350",
-      "instructor_first": "Karen",
-      "instructor_last": "Hall",
-      "vote_type": 1
-    },
-    {
-      "username": "elder_carter",
-      "course_number": "CS5200",
-      "instructor_first": "Sarah",
-      "instructor_last": "Chen",
-      "vote_type": 1
-    },
-    {
-      "username": "twins_mitchell",
-      "course_number": "MATH5110",
-      "instructor_first": "Emily",
-      "instructor_last": "Watson",
-      "vote_type": -1
-    },
-    {
-      "username": "architect_perez",
-      "course_number": "PHYS5310",
-      "instructor_first": "David",
-      "instructor_last": "Kim",
-      "vote_type": 1
-    },
-    {
-      "username": "keymaker_roberts",
-      "course_number": "BIO5340",
-      "instructor_first": "Daniel",
-      "instructor_last": "Clark",
-      "vote_type": 1
-    },
-    {
-      "username": "merovingian_turner",
-      "course_number": "CHEM5410",
-      "instructor_first": "Susan",
-      "instructor_last": "Lewis",
-      "vote_type": -1
-    },
-    {
-      "username": "persephone_phillips",
-      "course_number": "EE5410",
-      "instructor_first": "Maria",
-      "instructor_last": "Garcia",
-      "vote_type": 1
-    },
-    {
-      "username": "seraph_campbell",
-      "course_number": "DS5100",
-      "instructor_first": "John",
-      "instructor_last": "Smith",
-      "vote_type": 1
-    },
-    {
-      "username": "trainman_parker",
-      "course_number": "ME5320",
-      "instructor_first": "James",
-      "instructor_last": "Thompson",
-      "vote_type": -1
-    },
-    {
-      "username": "kid_evans",
-      "course_number": "STAT5330",
-      "instructor_first": "Thomas",
-      "instructor_last": "Wright",
-      "vote_type": 1
-    },
-    {
-      "username": "zee_edwards",
-      "course_number": "BME5220",
-      "instructor_first": "Jennifer",
-      "instructor_last": "Liu",
-      "vote_type": 1
-    },
-    {
-      "username": "cas_collins",
-      "course_number": "CS5500",
-      "instructor_first": "William",
-      "instructor_last": "Brown",
-      "vote_type": -1
-    },
-    {
-      "username": "jue_stewart",
-      "course_number": "MATH5320",
-      "instructor_first": "Paul",
-      "instructor_last": "Adams",
-      "vote_type": 1
-    },
-    {
-      "username": "thadeus_sanchez",
-      "course_number": "PHYS5420",
-      "instructor_first": "Patricia",
-      "instructor_last": "Nelson",
-      "vote_type": 1
-    },
-    {
-      "username": "corrupt_morris",
-      "course_number": "BIO5120",
-      "instructor_first": "Jennifer",
-      "instructor_last": "Liu",
-      "vote_type": -1
-    },
-    {
-      "username": "abel_bailey",
-      "course_number": "CHEM5200",
-      "instructor_first": "Robert",
-      "instructor_last": "Anderson",
-      "vote_type": 1
-    },
-    {
-      "username": "cain_rivera",
-      "course_number": "EE5520",
-      "instructor_first": "Nancy",
-      "instructor_last": "Evans",
-      "vote_type": 1
-    },
-    {
-      "username": "priestess_cooper",
-      "course_number": "DS5230",
-      "instructor_first": "Mark",
-      "instructor_last": "Robinson",
-      "vote_type": -1
-    },
-    {
-      "username": "choi_richardson",
-      "course_number": "CS5800",
-      "instructor_first": "Michael",
-      "instructor_last": "Rodriguez",
-      "vote_type": 1
-    },
-    {
-      "username": "dujour_cox",
-      "course_number": "STAT5220",
-      "instructor_first": "Linda",
-      "instructor_last": "Martinez",
-      "vote_type": 1
-    },
-    {
-      "username": "malachi_howard",
-      "course_number": "BME5350",
-      "instructor_first": "Karen",
-      "instructor_last": "Hall",
-      "vote_type": -1
-    },
-    {
-      "username": "tirant_ward",
-      "course_number": "MATH5110",
-      "instructor_first": "Emily",
-      "instructor_last": "Watson",
-      "vote_type": 1
-    },
-    {
-      "username": "veil_torres",
-      "course_number": "PHYS5310",
-      "instructor_first": "David",
-      "instructor_last": "Kim",
-      "vote_type": 1
-    },
-    {
-      "username": "chuang_peterson",
-      "course_number": "BIO5340",
-      "instructor_first": "Daniel",
-      "instructor_last": "Clark",
-      "vote_type": -1
-    },
-    {
-      "username": "yuen_gray",
-      "course_number": "CHEM5410",
-      "instructor_first": "Susan",
-      "instructor_last": "Lewis",
-      "vote_type": 1
-    },
-    {
-      "username": "maggie_ramirez",
-      "course_number": "EE5410",
-      "instructor_first": "Maria",
-      "instructor_last": "Garcia",
-      "vote_type": 1
-    },
-    {
-      "username": "cap_james",
-      "course_number": "DS5340",
-      "instructor_first": "John",
-      "instructor_last": "Smith",
-      "vote_type": -1
-    },
-    {
-      "username": "axel_watson",
-      "course_number": "ME5320",
-      "instructor_first": "James",
-      "instructor_last": "Thompson",
-      "vote_type": 1
-    },
-    {
-      "username": "sparky_brooks",
-      "course_number": "STAT5330",
-      "instructor_first": "Thomas",
-      "instructor_last": "Wright",
-      "vote_type": 1
-    },
-    {
-      "username": "kali_kelly",
-      "course_number": "BME5220",
-      "instructor_first": "Jennifer",
-      "instructor_last": "Liu",
-      "vote_type": -1
-    },
-    {
-      "username": "gideon_sanders",
-      "course_number": "CS5100",
-      "instructor_first": "Christopher",
-      "instructor_last": "Mitchell",
-      "vote_type": 1
-    },
-    {
-      "username": "nebula_price",
-      "course_number": "MATH5320",
-      "instructor_first": "Paul",
-      "instructor_last": "Adams",
-      "vote_type": 1
-    },
-    {
-      "username": "havoc_bennett",
-      "course_number": "PHYS5420",
-      "instructor_first": "Patricia",
-      "instructor_last": "Nelson",
-      "vote_type": -1
-    },
-    {
-      "username": "shadow_wood",
-      "course_number": "BIO5120",
-      "instructor_first": "Jennifer",
-      "instructor_last": "Liu",
-      "vote_type": 1
-    },
-    {
-      "username": "blade_barnes",
-      "course_number": "CHEM5200",
-      "instructor_first": "Robert",
-      "instructor_last": "Anderson",
-      "vote_type": 1
-    },
-    {
-      "username": "smoke_ross",
-      "course_number": "EE5520",
-      "instructor_first": "Nancy",
-      "instructor_last": "Evans",
-      "vote_type": -1
-    },
-    {
-      "username": "shimmer_henderson",
-      "course_number": "DS5100",
-      "instructor_first": "John",
-      "instructor_last": "Smith",
-      "vote_type": 1
-    },
-    {
-      "username": "glitch_coleman",
-      "course_number": "CS5500",
-      "instructor_first": "William",
-      "instructor_last": "Brown",
-      "vote_type": 1
-    },
-    {
-      "username": "pixel_jenkins",
-      "course_number": "STAT5220",
-      "instructor_first": "Linda",
-      "instructor_last": "Martinez",
-      "vote_type": -1
-    },
-    {
-      "username": "quantum_perry",
-      "course_number": "BME5350",
-      "instructor_first": "Karen",
-      "instructor_last": "Hall",
-      "vote_type": 1
-    },
-    {
-      "username": "flux_powell",
-      "course_number": "CS5200",
-      "instructor_first": "Sarah",
-      "instructor_last": "Chen",
-      "vote_type": 1
-    },
-    {
-      "username": "synth_long",
-      "course_number": "MATH5110",
-      "instructor_first": "Emily",
-      "instructor_last": "Watson",
-      "vote_type": -1
-    },
-    {
-      "username": "chrome_patterson",
-      "course_number": "PHYS5310",
-      "instructor_first": "David",
-      "instructor_last": "Kim",
-      "vote_type": 1
-    },
-    {
-      "username": "silver_hughes",
-      "course_number": "BIO5340",
-      "instructor_first": "Daniel",
-      "instructor_last": "Clark",
-      "vote_type": 1
-    },
-    {
-      "username": "gold_flores",
-      "course_number": "CHEM5410",
-      "instructor_first": "Susan",
-      "instructor_last": "Lewis",
-      "vote_type": -1
-    },
-    {
-      "username": "bronze_washington",
-      "course_number": "EE5410",
-      "instructor_first": "Maria",
-      "instructor_last": "Garcia",
-      "vote_type": 1
-    },
-    {
-      "username": "copper_butler",
-      "course_number": "DS5230",
-      "instructor_first": "Mark",
-      "instructor_last": "Robinson",
-      "vote_type": 1
-    },
-    {
-      "username": "iron_simmons",
-      "course_number": "ME5320",
-      "instructor_first": "James",
-      "instructor_last": "Thompson",
-      "vote_type": -1
-    },
-    {
-      "username": "steel_foster",
-      "course_number": "STAT5330",
-      "instructor_first": "Thomas",
-      "instructor_last": "Wright",
-      "vote_type": 1
-    },
-    {
-      "username": "titanium_gonzales",
-      "course_number": "BME5220",
-      "instructor_first": "Jennifer",
-      "instructor_last": "Liu",
-      "vote_type": 1
-    },
-    {
-      "username": "tungsten_bryant",
-      "course_number": "CS5800",
-      "instructor_first": "Michael",
-      "instructor_last": "Rodriguez",
-      "vote_type": -1
-    },
-    {
-      "username": "platinum_alexander",
-      "course_number": "MATH5320",
-      "instructor_first": "Paul",
-      "instructor_last": "Adams",
-      "vote_type": 1
-    },
-    {
-      "username": "mercury_russell",
-      "course_number": "PHYS5420",
-      "instructor_first": "Patricia",
-      "instructor_last": "Nelson",
-      "vote_type": 1
-    },
-    {
-      "username": "uranium_griffin",
-      "course_number": "BIO5120",
-      "instructor_first": "Jennifer",
-      "instructor_last": "Liu",
-      "vote_type": -1
-    },
-    {
-      "username": "lithium_diaz",
-      "course_number": "CHEM5200",
-      "instructor_first": "Robert",
-      "instructor_last": "Anderson",
-      "vote_type": 1
-    },
-    {
-      "username": "sodium_patterson",
-      "course_number": "EE5520",
-      "instructor_first": "Nancy",
-      "instructor_last": "Evans",
-      "vote_type": 1
-    },
-    {
-      "username": "potassium_cox",
-      "course_number": "DS5340",
-      "instructor_first": "John",
-      "instructor_last": "Smith",
-      "vote_type": -1
-    },
-    {
-      "username": "calcium_ward",
-      "course_number": "CS5100",
-      "instructor_first": "Christopher",
-      "instructor_last": "Mitchell",
-      "vote_type": 1
-    }
+  "votes_batch_6": [
+    {"vote_id": 501, "review_id": 7758, "username": "mason_gonzales", "vote_type": 1},
+    {"vote_id": 502, "review_id": 7759, "username": "ella_bryant", "vote_type": 1},
+    {"vote_id": 503, "review_id": 7760, "username": "carter_alexander", "vote_type": 1},
+    {"vote_id": 504, "review_id": 7761, "username": "scarlett_russell", "vote_type": -1},
+    {"vote_id": 505, "review_id": 7762, "username": "sebastian_griffin", "vote_type": 1},
+    {"vote_id": 506, "review_id": 7763, "username": "luna_diaz", "vote_type": 1},
+    {"vote_id": 507, "review_id": 7764, "username": "alex_chen", "vote_type": 1},
+    {"vote_id": 508, "review_id": 7765, "username": "sarah_j", "vote_type": 1},
+    {"vote_id": 509, "review_id": 7766, "username": "mike_wilson", "vote_type": 1},
+    {"vote_id": 510, "review_id": 7767, "username": "emma_davis", "vote_type": 1},
+    {"vote_id": 511, "review_id": 7768, "username": "chris_martinez", "vote_type": -1},
+    {"vote_id": 512, "review_id": 7769, "username": "lisa_anderson", "vote_type": 1},
+    {"vote_id": 513, "review_id": 7770, "username": "john_smith", "vote_type": 1},
+    {"vote_id": 514, "review_id": 7771, "username": "owen_hayes", "vote_type": 1},
+    {"vote_id": 515, "review_id": 7772, "username": "layla_myers", "vote_type": -1},
+    {"vote_id": 516, "review_id": 7773, "username": "wyatt_ford", "vote_type": 1},
+    {"vote_id": 517, "review_id": 7774, "username": "zoey_hamilton", "vote_type": -1},
+    {"vote_id": 518, "review_id": 7775, "username": "jaxon_graham", "vote_type": 1},
+    {"vote_id": 519, "review_id": 7776, "username": "nora_sullivan", "vote_type": -1},
+    {"vote_id": 520, "review_id": 7777, "username": "alex_chen", "vote_type": 1},
+    {"vote_id": 521, "review_id": 7778, "username": "sarah_j", "vote_type": 1},
+    {"vote_id": 522, "review_id": 7779, "username": "mike_wilson", "vote_type": 1},
+    {"vote_id": 523, "review_id": 7780, "username": "emma_davis", "vote_type": -1},
+    {"vote_id": 524, "review_id": 7781, "username": "chris_martinez", "vote_type": 1},
+    {"vote_id": 525, "review_id": 7782, "username": "lisa_anderson", "vote_type": 1},
+    {"vote_id": 526, "review_id": 7783, "username": "john_smith", "vote_type": 1},
+    {"vote_id": 527, "review_id": 7784, "username": "leo_wallace", "vote_type": 1},
+    {"vote_id": 528, "review_id": 7785, "username": "lily_woods", "vote_type": 1},
+    {"vote_id": 529, "review_id": 7786, "username": "grayson_cole", "vote_type": -1},
+    {"vote_id": 530, "review_id": 7787, "username": "hazel_west", "vote_type": 1},
+    {"vote_id": 531, "review_id": 7788, "username": "luke_jordan", "vote_type": -1},
+    {"vote_id": 532, "review_id": 7789, "username": "penelope_owens", "vote_type": 1},
+    {"vote_id": 533, "review_id": 7790, "username": "alex_chen", "vote_type": -1},
+    {"vote_id": 534, "review_id": 7791, "username": "sarah_j", "vote_type": 1},
+    {"vote_id": 535, "review_id": 7792, "username": "mike_wilson", "vote_type": -1},
+    {"vote_id": 536, "review_id": 7793, "username": "emma_davis", "vote_type": 1},
+    {"vote_id": 537, "review_id": 7794, "username": "chris_martinez", "vote_type": -1},
+    {"vote_id": 538, "review_id": 7795, "username": "lisa_anderson", "vote_type": 1},
+    {"vote_id": 539, "review_id": 7796, "username": "john_smith", "vote_type": 1},
+    {"vote_id": 540, "review_id": 7797, "username": "jessica_clark", "vote_type": -1},
+    {"vote_id": 541, "review_id": 7798, "username": "david_brown", "vote_type": 1},
+    {"vote_id": 542, "review_id": 7799, "username": "amy_lee", "vote_type": -1},
+    {"vote_id": 543, "review_id": 7800, "username": "robert_jackson", "vote_type": 1},
+    {"vote_id": 544, "review_id": 7801, "username": "jennifer_liu", "vote_type": 1},
+    {"vote_id": 545, "review_id": 7802, "username": "william_hall", "vote_type": 1},
+    {"vote_id": 546, "review_id": 7803, "username": "alex_chen", "vote_type": -1},
+    {"vote_id": 547, "review_id": 7804, "username": "sarah_j", "vote_type": 1},
+    {"vote_id": 548, "review_id": 7805, "username": "mike_wilson", "vote_type": 1},
+    {"vote_id": 549, "review_id": 7806, "username": "emma_davis", "vote_type": 1},
+    {"vote_id": 550, "review_id": 7807, "username": "chris_martinez", "vote_type": -1},
+    {"vote_id": 551, "review_id": 7808, "username": "lisa_anderson", "vote_type": 1},
+    {"vote_id": 552, "review_id": 7809, "username": "john_smith", "vote_type": 1},
+    {"vote_id": 553, "review_id": 7810, "username": "jessica_miller", "vote_type": 1},
+    {"vote_id": 554, "review_id": 7811, "username": "ryan_kim", "vote_type": 1},
+    {"vote_id": 555, "review_id": 7812, "username": "lisa_wang", "vote_type": 1},
+    {"vote_id": 556, "review_id": 7813, "username": "michelle_park", "vote_type": -1},
+    {"vote_id": 557, "review_id": 7814, "username": "kevin_zhang", "vote_type": -1},
+    {"vote_id": 558, "review_id": 7815, "username": "amanda_white", "vote_type": 1},
+    {"vote_id": 559, "review_id": 7816, "username": "alex_chen", "vote_type": 1},
+    {"vote_id": 560, "review_id": 7817, "username": "sarah_j", "vote_type": 1},
+    {"vote_id": 561, "review_id": 7818, "username": "mike_wilson", "vote_type": 1},
+    {"vote_id": 562, "review_id": 7819, "username": "emma_davis", "vote_type": 1},
+    {"vote_id": 563, "review_id": 7820, "username": "chris_martinez", "vote_type": 1},
+    {"vote_id": 564, "review_id": 7821, "username": "lisa_anderson", "vote_type": -1},
+    {"vote_id": 565, "review_id": 7822, "username": "john_smith", "vote_type": 1},
+    {"vote_id": 566, "review_id": 7823, "username": "brian_jones", "vote_type": -1},
+    {"vote_id": 567, "review_id": 7824, "username": "nancy_taylor", "vote_type": 1},
+    {"vote_id": 568, "review_id": 7825, "username": "steven_garcia", "vote_type": 1},
+    {"vote_id": 569, "review_id": 7826, "username": "rachel_anderson", "vote_type": 1},
+    {"vote_id": 570, "review_id": 7827, "username": "daniel_clark", "vote_type": -1},
+    {"vote_id": 571, "review_id": 7828, "username": "jessica_miller", "vote_type": 1},
+    {"vote_id": 572, "review_id": 7829, "username": "alex_chen", "vote_type": -1},
+    {"vote_id": 573, "review_id": 7830, "username": "sarah_j", "vote_type": -1},
+    {"vote_id": 574, "review_id": 7831, "username": "mike_wilson", "vote_type": 1},
+    {"vote_id": 575, "review_id": 7832, "username": "emma_davis", "vote_type": 1},
+    {"vote_id": 576, "review_id": 7833, "username": "chris_martinez", "vote_type": 1},
+    {"vote_id": 577, "review_id": 7834, "username": "lisa_anderson", "vote_type": -1},
+    {"vote_id": 578, "review_id": 7835, "username": "john_smith", "vote_type": 1},
+    {"vote_id": 579, "review_id": 7836, "username": "andrew_thomas", "vote_type": 1},
+    {"vote_id": 580, "review_id": 7837, "username": "sophia_robinson", "vote_type": 1},
+    {"vote_id": 581, "review_id": 7838, "username": "olivia_lewis", "vote_type": 1},
+    {"vote_id": 582, "review_id": 7839, "username": "james_walker", "vote_type": -1},
+    {"vote_id": 583, "review_id": 7840, "username": "emily_young", "vote_type": 1},
+    {"vote_id": 584, "review_id": 7841, "username": "robert_king", "vote_type": -1},
+    {"vote_id": 585, "review_id": 7842, "username": "alex_chen", "vote_type": 1},
+    {"vote_id": 586, "review_id": 7843, "username": "sarah_j", "vote_type": 1},
+    {"vote_id": 587, "review_id": 7844, "username": "mike_wilson", "vote_type": -1},
+    {"vote_id": 588, "review_id": 7845, "username": "emma_davis", "vote_type": 1},
+    {"vote_id": 589, "review_id": 7846, "username": "chris_martinez", "vote_type": -1},
+    {"vote_id": 590, "review_id": 7847, "username": "lisa_anderson", "vote_type": 1},
+    {"vote_id": 591, "review_id": 7848, "username": "john_smith", "vote_type": 1},
+    {"vote_id": 592, "review_id": 7849, "username": "maria_wright", "vote_type": 1},
+    {"vote_id": 593, "review_id": 7850, "username": "joseph_harris", "vote_type": -1},
+    {"vote_id": 594, "review_id": 7851, "username": "victoria_green", "vote_type": 1},
+    {"vote_id": 595, "review_id": 7852, "username": "thomas_adams", "vote_type": 1},
+    {"vote_id": 596, "review_id": 7853, "username": "elizabeth_turner", "vote_type": 1},
+    {"vote_id": 597, "review_id": 7854, "username": "charles_mitchell", "vote_type": -1},
+    {"vote_id": 598, "review_id": 7855, "username": "alex_chen", "vote_type": 1},
+    {"vote_id": 599, "review_id": 7856, "username": "sarah_j", "vote_type": 1},
+    {"vote_id": 600, "review_id": 7857, "username": "mike_wilson", "vote_type": 1}
   ]
 }
