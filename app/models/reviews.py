@@ -41,9 +41,9 @@ def save_review(review:Review):
     review_id = execute_qry(sql_cmd, (review.comment, review.rating, review.post_time, review.last_updated, review.course_num, review.instructor_first, review.instructor_last, review.username))
     print('insert success.')
     if review_id:
-        review.review_id = review_id
+        review.id = review_id
         print(f'Insert success. Review ID: {review_id}')
-    
+
     return review
 
 def save_review_embedding(review_id : int, embedding):
@@ -63,31 +63,6 @@ def get_reviews():
     
 
 class Reviews:
-
-    def __init__(self):
-
-       self.gemma_model = SentenceTransformer("google/embeddinggemma-300m")
-
-
-    def insert_document_with_embedding(self, cursor, comment, rating, course_number, instructor_first, instructor_last,
-                                       username):
-
-        cursor.execute("""
-                       INSERT INTO review (comment, rating, course_number, instructor_first, instructor_last, username)
-                       VALUES (%s, %s, %s, %s, %s, %s) RETURNING id
-                       """, (comment, rating, course_number, instructor_first, instructor_last, username))
-
-        review_id = cursor.fetchone()[0]
-
-        embedding = self.gemma_model.encode_document(comment)
-
-        cursor.execute("""
-                       INSERT INTO review_embeddings (review_id, embedding)
-                       VALUES (%s, %s)
-                       """, (review_id, embedding.tolist()))
-
-        cursor.commit()
-
 
 
     @staticmethod
@@ -212,21 +187,19 @@ class Reviews:
     @staticmethod
     def check_review_exists(cursor, username, review_id):
         check_query = '''
-                      select review \
+                      select comment \
                       from review \
                       where review_id = %s \
                         and username = %s \
                       '''
         cursor.execute(check_query, [review_id, username])
 
-        if cursor.fetchone() is None:
-            return None
-        else:
-            return cursor.fetchone()
+        return cursor.fetchone()
 
     @staticmethod
     def edit_review(cursor, new_comment, new_rating, username, review_id):
-        update_query = '''
+
+        update_review_query = '''
                        update review \
                        set comment      = %s, \
                            rating       = %s, \
@@ -235,7 +208,19 @@ class Reviews:
                          and username = %s \
                        '''
 
-        cursor.execute(update_query, (new_comment, new_rating, review_id, username))
+        cursor.execute(update_review_query, (new_comment, new_rating, review_id, username))
+
+        gemma_model = SentenceTransformer("google/embeddinggemma-300m")
+
+        new_embedding = gemma_model.encode_document(new_comment)
+
+        update_embedding_query = '''
+        
+        UPDATE review_embeddings set embedding = %s WHERE review_id = %s
+        
+        '''
+        cursor.execute(update_embedding_query, (new_embedding.tolist(), review_id))
+
 
     @staticmethod
     def delete_review(cursor, username, review_id):

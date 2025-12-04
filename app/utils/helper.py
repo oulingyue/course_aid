@@ -2,6 +2,7 @@ import json
 import os
 from functools import wraps
 from flask import jsonify, session
+import psycopg2
 from app.config import db_connection
 
 

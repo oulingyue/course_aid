@@ -361,7 +361,7 @@
             const comment = document.getElementById(`comment-${reviewId}`).value;
 
             try {
-                const response = await fetch(`/my_reviews/${reviewId}/edit`, {
+                const response = await fetch(`/user_reviews/${reviewId}/edit`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
@@ -396,7 +396,7 @@
             }
 
             try {
-                const response = await fetch(`/my_reviews/${reviewId}/delete`, {
+                const response = await fetch(`/user_reviews/${reviewId}/delete`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'

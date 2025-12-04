@@ -39,6 +39,13 @@
             padding: 20px 30px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
             gap: 15px;
         }
 
@@ -63,6 +70,25 @@
             font-size: 13px;
             opacity: 0.9;
             margin-top: 2px;
+        }
+
+        .help-button {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .help-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
         }
 
         .chat-messages {
@@ -282,6 +308,8 @@
             transition: all 0.2s;
             font-size: 14px;
             color: #495057;
+            margin: 5px;
+            display: inline-block;
         }
 
         .suggestion-chip:hover {
@@ -331,11 +359,16 @@
 <body>
     <div class="chat-container">
         <div class="chat-header">
-            <div class="avatar">🤖</div>
-            <div class="header-info">
-                <h1>CourseAid Assistant</h1>
-                <p>Online - Ready to help</p>
+            <div class="header-left">
+                <div class="avatar">🤖</div>
+                <div class="header-info">
+                    <h1>CourseAid Assistant</h1>
+                    <p>Online - Ready to help</p>
+                </div>
             </div>
+            <button class="help-button" onclick="showSuggestions()">
+                What I can do
+            </button>
         </div>
 
         <div class="chat-messages" id="chatMessages">
@@ -343,11 +376,10 @@
                 <h2>👋 Welcome!</h2>
                 <p>I'm your AI assistant. How can I help you today?</p>
                 <div class="suggestions">
-
                     <p>Here's what I can answer</p>
-
-                    <div  id="professor-recommendation" class="suggestion-chip" onclick="sendSuggestion('Recommend professors to learn from for a course')">Recommend professors to learn from for a course</div>
-                    <div id="cirriculum-reccommendation" class="suggestion-chip" onclick="sendSuggestion('Recommend a cirriculum for a field')">Recommend me a cirriculum for a field</div>
+                    <div id="professor-recommendation" class="suggestion-chip" onclick="sendSuggestion('Recommend best professors for a course', 'Great! Type in the course code')">Recommend best professors for a course</div>
+                    <div id="compare-professors" class="suggestion-chip" onclick="sendSuggestion('Compare two professors', 'Okay! Go ahead and tell me which two professors')">Compare two professors</div>
+                    <div id="curriculum-recommendation" class="suggestion-chip" onclick="sendSuggestion('Suggest courses for my field of interest', 'Sure! What\'s your field of interest?')">Suggest courses for my field of interest</div>
                 </div>
             </div>
 
@@ -396,9 +428,52 @@
             }
         }
 
-        function sendSuggestion(text) {
-            chatInput.value = text;
-            sendMessage();
+        function showSuggestions() {
+            // Show AI message with suggestions
+            const suggestionsHTML = `
+                <div style="margin-top: 10px;">
+                    <p style="font-weight: 600; margin-bottom: 15px; color: #667eea;">Here's what I can help you with:</p>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div class="suggestion-chip" onclick="sendSuggestion('Recommend best professors for a course', 'Great! Type in the course code')" style="cursor: pointer; width: fit-content;">
+                            📚 Recommend best professors for a course
+                        </div>
+                        <div class="suggestion-chip" onclick="sendSuggestion('Compare two professors', 'Okay! Go ahead and tell me which two professors')" style="cursor: pointer; width: fit-content;">
+                            ⚖️ Compare two professors
+                        </div>
+                        <div class="suggestion-chip" onclick="sendSuggestion('Suggest courses for my field of interest', 'Sure! What\\'s your field of interest?')" style="cursor: pointer; width: fit-content;">
+                            🎓 Suggest courses for my field of interest
+                        </div>
+                         <div class="suggestion-chip" onclick="sendSuggestion('Recommend best professors for a course', 'Great! Type in multiple course codes')" style="cursor: pointer; width: fit-content;">
+                            📚 Compare courses
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            addMessage(suggestionsHTML, false);
+        }
+
+        function sendSuggestion(text, followUp) {
+            // Add user's suggestion as a message
+            addMessage(text, true);
+
+            // Clear input
+            chatInput.value = '';
+            chatInput.style.height = 'auto';
+
+            // Disable send button
+            sendButton.disabled = true;
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Send follow-up after a delay
+            setTimeout(() => {
+                hideTypingIndicator();
+                addMessage(followUp, false);
+                sendButton.disabled = false;
+                chatInput.focus();
+            }, 1000);
         }
 
         function getCurrentTime() {
@@ -407,7 +482,7 @@
         }
 
         function addMessage(content, isUser = false) {
-
+            // Remove welcome message
             const welcomeMsg = document.querySelector('.welcome-message');
             if (welcomeMsg) {
                 welcomeMsg.remove();
@@ -449,20 +524,20 @@
 
             if (!message) return;
 
-
+            // Add user message
             addMessage(message, true);
 
-
+            // Clear input
             chatInput.value = '';
             chatInput.style.height = 'auto';
 
-
+            // Disable send button
             sendButton.disabled = true;
 
-
+            // Show typing indicator
             showTypingIndicator();
 
-
+            // Simulate AI response (replace with actual API call)
             setTimeout(() => {
                 hideTypingIndicator();
 
@@ -480,7 +555,6 @@
                 sendButton.disabled = false;
                 chatInput.focus();
             }, 1500);
-
         }
 
         window.addEventListener('load', () => {

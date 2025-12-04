@@ -58,7 +58,7 @@ def get_reviews_for_instructor(conn, instructor_name):
     else:
         message += "Instructor does not exist"
         cursor.close()
-        conn.close()
+
         return render_template("professor_reviews.html", reviews=[], message=message)
 
     try:
@@ -137,9 +137,9 @@ def edit_review(review_id, conn):
     try:
 
 
-        if Reviews.check_review_exists(conn, session.get("user_id"), review_id) is None:
+        if Reviews.check_review_exists(cursor, session.get("user_id"), review_id) is None:
             cursor.close()
-            conn.close()
+
             message += "No review found for this username"
             return jsonify({
                 'success': False,
@@ -169,7 +169,7 @@ def edit_review(review_id, conn):
         message += f"Error getting reviews for {review_id}: {e}"
         conn.rollback()
         cursor.close()
-        conn.close()
+
         return jsonify({
             'success': False,
             'message': message
@@ -179,7 +179,7 @@ def edit_review(review_id, conn):
         message = f"Error getting reviews for {review_id}: {e}"
         conn.rollback()
         cursor.close()
-        conn.close()
+
         return jsonify({
             'success':False,
             'message': message
@@ -199,7 +199,7 @@ def delete_review(review_id, conn):
 
         if Reviews.check_review_exists(cursor, session.get("user_id"), review_id) is None:
             cursor.close()
-            conn.close()
+
             message += "No review found for this username"
             return jsonify({
                 'success': False,
@@ -210,7 +210,7 @@ def delete_review(review_id, conn):
         conn.commit()
 
         cursor.close()
-        conn.close()
+
 
         message = f"Review {review_id} successfully deleted"
         return jsonify({

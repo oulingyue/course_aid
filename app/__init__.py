@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 app = Flask(__name__,
             template_folder='view/templates',
             static_folder='view/static')
@@ -17,6 +16,5 @@ app.register_blueprint(auth)
 CORS(app)
 
 conn = db_connection.connect()
-
 
 from app import routes

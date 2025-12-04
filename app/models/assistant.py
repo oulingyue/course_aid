@@ -1,7 +1,10 @@
 from tqdm import tqdm
 from ollama import AsyncClient
-from app.models.intructors import Instructor
-from app.config.db_connection import connect
+from course_aid.app.models.intructors import Instructor
+from course_aid.app.config.db_connection import connect
+from course_aid.app.config
+import re
+
 class AssistantRoles:
 
     def __init__(self):
@@ -57,14 +60,26 @@ class AssistantRoles:
             results.append({"first": row[0], "last": row[1], "summary": result})
         return results
 
-
-    def recommend_cirriculum(self):
+    def recommend_cirriculum(self, user_query: str):
         pass
 
-    def recommend_professors_by_course(self):
+    def recommend_professors_for_course(self, user_query: str):
         pass
 
-    def positively_reviewed_professors(self):
+    def compare_two_professors(self, user_query: str):
+        pass
+
+    def compare_courses(self, user_query: str):
+
+
+
+
+        pass
+
+    def miscellaneous(self, user_query: str):
+        pass
+
+    def build_context(self, user_query: str, database_result):
         pass
 
 
