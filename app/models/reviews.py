@@ -35,6 +35,7 @@ class Review:
             'last_updated': self.last_updated
         }
 
+#--- functions that insert and get review/review embeddings ----#
 def save_review(review:Review):
     """Save a review to the database"""
     sql_cmd = f'INSERT INTO review (comment, rating, post_time, last_updated, course_number, instructor_first, instructor_last, username) VALUES (%s, %s, %s, %s, %s, %s, %s, %s) RETURNING review_id'

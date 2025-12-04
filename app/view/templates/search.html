@@ -1,0 +1,465 @@
+{% extends "base.html" %}
+
+{% block title %}Search Professors{% endblock %}
+
+{% block content %}
+<style>
+  .search-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: #1f2937;
+  }
+
+  .subtitle {
+    color: #6b7280;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Mode Toggle */
+  .mode-toggle {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+  }
+
+  .mode-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: #f3f4f6;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    color: #6b7280;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .mode-btn:hover {
+    background: #e5e7eb;
+    color: #374151;
+  }
+
+  .mode-btn.active {
+    background: #4f46e5;
+    border-color: #4f46e5;
+    color: #fff;
+  }
+
+  .mode-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  /* Search Box */
+  .search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #9ca3af;
+  }
+
+  #searchInput {
+    width: 100%;
+    padding: 1rem 3rem;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s;
+  }
+
+  #searchInput:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  .clear-btn:hover {
+    color: #374151;
+  }
+
+  .clear-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  /* Filters */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .filter-select {
+    padding: 0.5rem 1rem;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: #374151;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .filter-select:focus {
+    border-color: #4f46e5;
+  }
+
+  /* Results */
+  .results {
+    margin-top: 1rem;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .results-count {
+    padding: 0.75rem 1rem;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+
+  .results-count strong {
+    color: #1f2937;
+  }
+
+  .no-results {
+    padding: 2rem;
+    text-align: center;
+    color: #6b7280;
+  }
+
+  .result-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    transition: background 0.2s;
+  }
+
+  .result-item:last-child {
+    border-bottom: none;
+  }
+
+  .result-item:hover {
+    background: #f9fafb;
+  }
+
+  .result-item a {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+  }
+
+  .result-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    background: #ede9fe;
+    color: #7c3aed;
+    flex-shrink: 0;
+  }
+
+  .result-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .result-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .result-name {
+    color: #1f2937;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .result-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    background: #fef3c7;
+    border-radius: 0.375rem;
+    color: #d97706;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .result-courses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  .course-tag {
+    padding: 0.25rem 0.5rem;
+    background: #d1fae5;
+    border-radius: 0.375rem;
+    color: #059669;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .course-tag.matched {
+    background: #e0e7ff;
+    color: #4f46e5;
+  }
+
+  .loading {
+    padding: 2rem;
+    text-align: center;
+    color: #6b7280;
+  }
+</style>
+
+<div class="search-container">
+  <h1>Find Your Professor</h1>
+  <p class="subtitle">Search by course number or professor name</p>
+
+  <!-- Mode Toggle -->
+  <div class="mode-toggle">
+    <button class="mode-btn active" data-mode="course">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+      </svg>
+      Search by Course
+    </button>
+    <button class="mode-btn" data-mode="professor">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      Search by Professor
+    </button>
+  </div>
+
+  <!-- Search Box -->
+  <div class="search-box">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+    <input type="text" id="searchInput" placeholder="Enter course number (e.g., CS101)...">
+    <button id="clearBtn" class="clear-btn hidden">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6 6 18M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <select id="departmentFilter" class="filter-select">
+      <option value="all">All Departments</option>
+      {% for dept in departments %}
+      <option value="{{ dept }}">{{ dept }}</option>
+      {% endfor %}
+    </select>
+
+    <select id="sortOrder" class="filter-select">
+      <option value="desc">Rating: High to Low</option>
+      <option value="asc">Rating: Low to High</option>
+    </select>
+  </div>
+
+  <!-- Results -->
+  <div id="results" class="results hidden"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('searchInput');
+  const clearBtn = document.getElementById('clearBtn');
+  const results = document.getElementById('results');
+  const modeBtns = document.querySelectorAll('.mode-btn');
+  const departmentFilter = document.getElementById('departmentFilter');
+  const sortOrder = document.getElementById('sortOrder');
+
+  let currentMode = 'course';
+  let debounceTimer;
+
+  function updatePlaceholder() {
+    searchInput.placeholder = currentMode === 'course' 
+      ? 'Enter course number (e.g., CS101)...' 
+      : 'Enter professor name...';
+  }
+
+  // Search input handler
+  searchInput.addEventListener('input', function() {
+    clearBtn.classList.toggle('hidden', !this.value);
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => performSearch(), 300);
+  });
+
+  // Clear button
+  clearBtn.addEventListener('click', function() {
+    searchInput.value = '';
+    clearBtn.classList.add('hidden');
+    results.classList.add('hidden');
+  });
+
+  // Mode toggle
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      modeBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentMode = this.dataset.mode;
+      updatePlaceholder();
+      if (searchInput.value) performSearch();
+    });
+  });
+
+  // Filter changes
+  departmentFilter.addEventListener('change', performSearch);
+  sortOrder.addEventListener('change', performSearch);
+
+  async function performSearch() {
+    const query = searchInput.value.trim();
+    if (!query) {
+      results.classList.add('hidden');
+      return;
+    }
+
+    results.classList.remove('hidden');
+    results.innerHTML = '<div class="loading">Searching...</div>';
+
+    const params = new URLSearchParams({
+      q: query,
+      mode: currentMode,
+      department: departmentFilter.value,
+      sort: sortOrder.value
+    });
+
+    try {
+      const response = await fetch(`{{ url_for('search') }}?${params}`);
+      const data = await response.json();
+      
+      if (data.error) {
+        results.innerHTML = `<div class="no-results">Error: ${data.error}</div>`;
+        return;
+      }
+      
+      renderResults(data, query);
+    } catch (error) {
+      console.error('Search error:', error);
+      results.innerHTML = '<div class="no-results">An error occurred. Please try again.</div>';
+    }
+  }
+
+  function renderResults(data, query) {
+    if (data.length === 0) {
+      results.innerHTML = `<div class="no-results">No professors found for "${query}"</div>`;
+      return;
+    }
+
+    const seenProfs = new Map();
+    const uniqueProfs = [];
+
+    data.forEach(prof => {
+      const fullName = `${prof.first_name} ${prof.last_name}`;
+      
+      if (!seenProfs.has(fullName)) {
+        seenProfs.set(fullName, true);
+        uniqueProfs.push(prof);
+      }
+    });
+
+    const countHtml = `<div class="results-count"> <strong>${uniqueProfs.length}</strong> professor${uniqueProfs.length !== 1 ? 's' : ''} found</div>`;
+
+    const itemsHtml = uniqueProfs.map(prof => {
+      let coursesHtml = '';
+      if (currentMode === 'course' && prof.matched_course) {
+        coursesHtml = `<span class="course-tag matched">${prof.matched_course}</span>`;
+      } else if (prof.courses && prof.courses.length > 0) {
+        coursesHtml = prof.courses.map(c => `<span class="course-tag">${c}</span>`).join('');
+      }
+
+      const fullName = `${prof.first_name} ${prof.last_name}`;
+      const profUrl = `{{ url_for('instructor_review', instructor_name='PLACEHOLDER') }}`.replace('PLACEHOLDER', encodeURIComponent(fullName));
+
+      return `
+        <div class="result-item">
+          <a href="${profUrl}">
+            <div class="result-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="result-info">
+              <div class="result-header">
+                <span class="result-name">${fullName}</span>
+                <span class="result-rating">★ ${prof.rating.toFixed(1)}</span>
+              </div>
+              <div class="result-courses">${coursesHtml}</div>
+            </div>
+          </a>
+        </div>
+      `;
+    }).join('');
+
+    results.innerHTML = countHtml + itemsHtml;
+  }
+
+  updatePlaceholder();
+});
+</script>
+{% endblock %}
