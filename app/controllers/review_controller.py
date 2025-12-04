@@ -277,7 +277,7 @@ def review_form(instructor_first,instructor_last):
         return redirect(url_for('index'))
     
     # GET request - display form
-    return render_template('reviews/review_form.html', courses=courses, instructor_first=instructor_first, instructor_last=instructor_last)
+    return render_template('review_form.html', courses=courses, instructor_first=instructor_first, instructor_last=instructor_last)
 
 def view_reviews():
     """Display all submitted reviews (optional - for testing)"""

@@ -2,15 +2,21 @@ from flask import Flask, render_template, request, jsonify
 from app.utils.helper import execute_qry
 
 def index():
-    return render_template('base.html')
+    return render_template('index.html')
 
 def search_page():
+    """
+    Search Page template displaying all department names
+    """
     q = "SELECT department_name FROM departments"
     results = execute_qry(q,())
     departments =  [row[0] for row in results]
     return render_template("search.html", departments=departments)
 
 def search():
+    """
+    search method that calls query in database to look up professors by name or by course. 
+    """
     query = request.args.get("q", "").strip()
     mode = request.args.get("mode", "course")
     dept_filter = request.args.get("department", "all")

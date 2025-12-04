@@ -61,19 +61,23 @@ def assistant():
 @app.route('/review/<instructor_first>/<instructor_last>', methods=['GET', 'POST'])
 @login_required
 def review_form(instructor_first,instructor_last):
+    """ review form for a specific professor"""
     return review_controller.review_form(instructor_first,instructor_last)
 
 @app.route('/reviews')
+@login_required
 def view_reviews():
     return review_controller.view_reviews()
 
 #---- search reviews ----# 
 @app.route("/search-page")
+@login_required
 def search_page():
     """Render the search page."""
     return index_controller.search_page()
 
 @app.route('/search')
+@login_required
 def search():
     """
     Endpoint for searching all professors
