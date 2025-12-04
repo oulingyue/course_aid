@@ -1,5 +1,5 @@
 import psycopg2
-from course_aid.app.utils.helper import validate_instructor
+from app.utils.helper import validate_instructor
 import json
 
 class Instructor:

@@ -1,8 +1,8 @@
 import os
 from flask import Flask
 from flask_cors import CORS
-from course_aid.app.middleware.auth import auth
-from course_aid.app.config import db_connection
+from app.middleware.auth import auth
+from app.config import db_connection
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -19,4 +19,4 @@ CORS(app)
 conn = db_connection.connect()
 
 
-from course_aid.app import routes
+from app import routes

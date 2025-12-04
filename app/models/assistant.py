@@ -1,7 +1,7 @@
 from tqdm import tqdm
 from ollama import AsyncClient
-from course_aid.app.models.intructors import Instructor
-from course_aid.app.config.db_connection import connect
+from app.models.intructors import Instructor
+from app.config.db_connection import connect
 class AssistantRoles:
 
     def __init__(self):

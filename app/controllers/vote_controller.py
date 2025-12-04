@@ -1,7 +1,7 @@
 import os
 import psycopg2
 from flask import Flask, request, jsonify, render_template, session
-from course_aid.app.models.votes import Votes
+from app.models.votes import Votes
 
 def handle_votes(conn, review_id):
     '''

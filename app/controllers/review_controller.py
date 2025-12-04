@@ -1,10 +1,10 @@
 
 import psycopg2
-from flask import request, jsonify, render_template, session
-from course_aid.app.models.intructors import Instructor
-from course_aid.app.models.reviews import Reviews
-from course_aid.app.utils.helper import validate_instructor, get_consensus_summary
-
+from flask import request, jsonify, render_template, session, flash, redirect, url_for
+from app.models.intructors import Instructor
+import app.models.reviews as r
+from app.models.reviews import Reviews
+from app.utils.helper import validate_instructor, get_consensus_summary
 
 def get_user_reviews(conn):
         cursor = conn.cursor()
@@ -38,7 +38,6 @@ def get_user_reviews(conn):
 
         return render_template("pastreviews.html", reviews=result,
                                message = message, message_type="info")
-
 
 def get_reviews_for_instructor(conn, instructor_name):
 
@@ -123,7 +122,6 @@ def get_reviews_for_instructor(conn, instructor_name):
                            message=message,
                            instructor_name=f"{instructor_first} {instructor_last}",
                            instructor_info=instructor_info, )
-
 
 
 def edit_review(review_id, conn):
@@ -241,5 +239,48 @@ def delete_review(review_id, conn):
             'message': message
         }), 500
 
+def review_form(instructor_first,instructor_last):
+    """Display review form for a specific professor"""
+    user_id = session.get("user_id")
+    courses = r.get_course_sections(instructor_first, instructor_last)
+    if not courses:
+        return redirect(url_for('index'))
+    
+    if request.method == 'POST':
+        json_data = request.get_json(silent=True) or {}
 
+        course_number = request.form.get('course_number') or json_data.get('course_number')
+        rating = request.form.get('rating') or json_data.get('rating')
+        comment = request.form.get('comment') or json_data.get('comment')
+        if not course_number or not rating or not comment:
+            flash("Please add a comment before submitting your review.", "error")
+            return redirect(url_for("review_form", instructor_first=instructor_first, instructor_last=instructor_last))
+        
+        
+        # Save review
+        new_review = r.Review(
+                        comment=comment, 
+                        instructor_first=instructor_first,
+                        instructor_last=instructor_last, 
+                        course_num=course_number,
+                        rating = rating,
+                        username = user_id)
+        review = r.save_review(new_review)
+        print(review)
+        r.save_review_embedding(review[0],new_review.embedding)
+        
+        # Return JSON if requested, otherwise redirect
+        if request.is_json:
+            return jsonify(new_review.to_dict()), 201
+        
+        flash(f'Review for {instructor_first} {instructor_last} submitted successfully!', 'success')
+        return redirect(url_for('index'))
+    
+    # GET request - display form
+    return render_template('reviews/review_form.html', courses=courses, instructor_first=instructor_first, instructor_last=instructor_last)
+
+def view_reviews():
+    """Display all submitted reviews (optional - for testing)"""
+    reviews = r.get_reviews()
+    return render_template('reviews/reviews_list.html', reviews=reviews)
 

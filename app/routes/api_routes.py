@@ -1,11 +1,14 @@
-from course_aid.app import app, conn
-from course_aid.app.controllers import vote_controller, review_controller, assistant_controller, index_controller
-from course_aid.app.utils.helper import login_required
+from app import app, conn
+from app.controllers import vote_controller, review_controller, assistant_controller, index_controller
+from app.utils.helper import login_required
 
-
+#---- Review forms ----# 
 @app.route('/')
 def index():
     return index_controller.index()
+
+
+#---- endpoints for instructor view ----#
 @app.route("/instructor/<instructor_name>/reviews", methods=["GET"])
 @login_required
 def instructor_review(instructor_name):
@@ -37,3 +40,12 @@ def delete_reviews(review_id):
 @login_required
 def assistant():
     return assistant_controller.get_assistant()
+
+@app.route('/review/<instructor_first>/<instructor_last>', methods=['GET', 'POST'])
+@login_required
+def review_form(instructor_first,instructor_last):
+    return review_controller.review_form(instructor_first,instructor_last)
+
+@app.route('/reviews')
+def view_reviews():
+    return review_controller.view_reviews()

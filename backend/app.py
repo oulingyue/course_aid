@@ -1,11 +1,12 @@
 import os
 import psycopg2
 import functools
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session, g, flash
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session, flash
 from flask_cors import CORS
 from datetime import datetime
 from db_connection import connect, close
 from auth import auth
+
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
@@ -14,6 +15,8 @@ app.register_blueprint(auth)
 
 CORS(app)
 
+
+## reviews.py in model 
 #---- review class ----#
 class Review():
     def __init__(self, comment: str, instructor_first: str, instructor_last: str, course_num:str, username= str, rating = int, id= None):
@@ -54,6 +57,8 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+
+# put in helper 
 def execute_qry(sql_cmd, params):
     conn = connect()
     cur = conn.cursor()
@@ -78,16 +83,20 @@ def execute_qry(sql_cmd, params):
         cur.close()
         conn.close()
 
-def get_course_sections(instructor_first,instructor_last):
-    cmd = f'SELECT course_number FROM course_section where (instructor_first = %s) and (instructor_last= %s);'
-    results = execute_qry(cmd, (instructor_first, instructor_last))
-    return [r[0] for r in results]  if results else None
+
+# put in reviews 
+
 
 def save_review(review:Review):
     """Save a review to the database"""
     sql_cmd = f'INSERT INTO review (comment, rating, post_time, last_updated, course_number, instructor_first, instructor_last, username) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'
     execute_qry(sql_cmd, (review.comment, review.rating, review.post_time, review.last_updated, review.course_num, review.instructor_first, review.instructor_last, review.username))
     print('insert success.')
+
+def get_course_sections(instructor_first,instructor_last):
+    cmd = f'SELECT course_number FROM course_section where (instructor_first = %s) and (instructor_last= %s);'
+    results = execute_qry(cmd, (instructor_first, instructor_last))
+    return [r[0] for r in results]  if results else None
 
 def get_reviews():
     sql_cmd = f'select * from review;'

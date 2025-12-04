@@ -1,7 +1,10 @@
 '''
 Endpoints for search functions 
 '''
+from app import execute_qry
+from flask import Flask, render_template, request, jsonify
 from db_connection import connect, close
+
 
 ''' 
 What needs to be written: 
@@ -10,9 +13,24 @@ prof search
 /
 '''
 
-@app.route('/search_course/{}')
-def search(content:str):
-    db = connect()
-    cursor = db.cursor()
+def search_by_professor()
 
-@app.route('/search_professor/{instuctor_first}')
+
+search = Blueprint('search', __name__, url_prefix='/search')
+
+
+@app.route('/')
+def search_course(content:str):
+    q = request.args.get("q", "").lower().strip()
+    mode = request.args.get("mode", "course")
+    dept_filter = request.args.get("departments ")
+    sort_order = request.args.get("sort", desc)
+
+    if not q:
+        return jsonify([])
+
+    results = []
+
+    if mode == "course":
+        for prof in professors: 
+            

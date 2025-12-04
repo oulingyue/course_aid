@@ -2,6 +2,7 @@ import json
 import os
 from functools import wraps
 from flask import jsonify, session
+from app.config import db_connection
 
 
 def login_required(f):
@@ -12,6 +13,35 @@ def login_required(f):
         return f(*args, **kwargs)
 
     return decorated_function
+
+def execute_qry(sql_cmd, params):
+    """
+    This method is a helper function that helps execute a sql command with indicated parameters. 
+    Can be used for insert, read, update, and delete queries 
+    """
+    conn = db_connection.connect()
+    cur = conn.cursor()
+    try:
+        cur.execute(sql_cmd, params)
+        if sql_cmd.strip().upper().startswith(("INSERT")):
+            result = cur.fetchone()
+            conn.commit()
+            print("Insertion committed to the database.")
+            return result if result else None
+        elif sql_cmd.strip().upper().startswith(("UPDATE", "DELETE")):
+            conn.commit()
+            print("Changes committed to the database.")
+            return cur.rowcount if cur.rowcount else None
+        else:
+                result = cur.fetchall()
+                return result
+    except psycopg2.Error as e:
+        conn.rollback()
+        print(f"failed to query: {e}")
+        return None
+    finally: 
+        cur.close()
+        conn.close()
 
 def validate_instructor(cursor, instructor_name):
     instructor_first = instructor_name.split(" ")[0]

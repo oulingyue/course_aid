@@ -1,7 +1,61 @@
 import psycopg2
+from datetime import datetime
+from app.utils.helper import execute_qry
 from sentence_transformers import SentenceTransformer
 from torch.distributed._shard.sharding_spec.chunk_sharding_spec_ops import embedding
 
+#---- review class ----#
+class Review:
+    def __init__(self, comment: str, instructor_first: str, instructor_last: str, course_num:str, username= str, rating = int, id= None):
+        self.comment = comment
+        self.instructor_first = instructor_first
+        self.instructor_last = instructor_last
+        self.course_num = course_num
+        self.username = username
+        self.rating = rating
+        self.post_time = datetime.now().isoformat()
+        self.last_updated = datetime.now().isoformat()
+        self.id = id
+        self.gemma_model = SentenceTransformer("google/embeddinggemma-300m")
+        self.embedding = self.gemma_model.encode_document(comment)
+    
+    def to_dict(self):
+        """
+        Convert the task to a dictionary representation for json formatting.
+        """
+        return {
+            'review_id': self.id,
+            'instructor_first': self.instructor_first,
+            'instructor_last': self.instructor_last,
+            'course_num': self.course_num,
+            'username': self.username,
+            'rating': self.rating,
+            'comment': self.comment,
+            'post_time': self.post_time,
+            'last_updated': self.last_updated
+        }
+
+def save_review(review:Review):
+    """Save a review to the database"""
+    sql_cmd = f'INSERT INTO review (comment, rating, post_time, last_updated, course_number, instructor_first, instructor_last, username) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'
+    execute_qry(sql_cmd, (review.comment, review.rating, review.post_time, review.last_updated, review.course_num, review.instructor_first, review.instructor_last, review.username))
+    print('insert success.')
+
+def save_review_embedding(review_id : int, embedding):
+    q = "INSERT INTO review_embeddings (review_id, embedding) VALUES (%s, %s)"
+    execute_qry(q, (review_id, embedding.tolist()))
+    print('embedding insertion success.')
+
+def get_course_sections(instructor_first,instructor_last):
+    cmd = f'SELECT course_number FROM course_section where (instructor_first = %s) and (instructor_last= %s);'
+    results = execute_qry(cmd, (instructor_first, instructor_last))
+    return [r[0] for r in results]  if results else None
+
+def get_reviews():
+    sql_cmd = f'select * from review;'
+    results = execute_qry(sql_cmd, ())
+    return results if results else None
+    
 
 class Reviews:
 
