@@ -266,8 +266,8 @@ def review_form(instructor_first,instructor_last):
                         rating = rating,
                         username = user_id)
         review = r.save_review(new_review)
+        r.save_review_embedding(review.id,review.embedding)
         print(review)
-        r.save_review_embedding(review[0],new_review.embedding)
         
         # Return JSON if requested, otherwise redirect
         if request.is_json:

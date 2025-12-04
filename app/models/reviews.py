@@ -37,9 +37,14 @@ class Review:
 
 def save_review(review:Review):
     """Save a review to the database"""
-    sql_cmd = f'INSERT INTO review (comment, rating, post_time, last_updated, course_number, instructor_first, instructor_last, username) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'
-    execute_qry(sql_cmd, (review.comment, review.rating, review.post_time, review.last_updated, review.course_num, review.instructor_first, review.instructor_last, review.username))
+    sql_cmd = f'INSERT INTO review (comment, rating, post_time, last_updated, course_number, instructor_first, instructor_last, username) VALUES (%s, %s, %s, %s, %s, %s, %s, %s) RETURNING review_id'
+    review_id = execute_qry(sql_cmd, (review.comment, review.rating, review.post_time, review.last_updated, review.course_num, review.instructor_first, review.instructor_last, review.username))
     print('insert success.')
+    if review_id:
+        review.review_id = review_id
+        print(f'Insert success. Review ID: {review_id}')
+    
+    return review
 
 def save_review_embedding(review_id : int, embedding):
     q = "INSERT INTO review_embeddings (review_id, embedding) VALUES (%s, %s)"

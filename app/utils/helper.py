@@ -24,10 +24,15 @@ def execute_qry(sql_cmd, params):
     try:
         cur.execute(sql_cmd, params)
         if sql_cmd.strip().upper().startswith(("INSERT")):
-            result = cur.fetchone()
-            conn.commit()
-            print("Insertion committed to the database.")
-            return result if result else None
+            if "RETURNING" in sql_cmd.upper():
+                result = cur.fetchone()
+                conn.commit()
+                print("Insertion committed to the database.")
+                return result[0] if result else None
+            else:
+                conn.commit()
+                print("Insertion committed to the database.")
+                return None
         elif sql_cmd.strip().upper().startswith(("UPDATE", "DELETE")):
             conn.commit()
             print("Changes committed to the database.")
