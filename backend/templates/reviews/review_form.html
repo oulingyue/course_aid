@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+
+{% block title %}Review {{ instructor_first }} {{ instructor_last }}{% endblock %}
+
+{% block header %}
+  <h2>Write a Review</h2>
+{% endblock %}
+
+{% block content %}
+  <style>
+    .professor-info {
+      background-color: #f0f9ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+
+    label.required::after {
+      content: ' *';
+      color: #ef4444;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: transparent;
+      box-shadow: 0 0 0 2px white, 0 0 0 4px #4f46e5;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .ratings-section {
+      background-color: #f9fafb;
+      padding: 16px;
+      border-radius: 6px;
+      margin-bottom: 24px;
+    }
+
+    .ratings-section h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 16px;
+    }
+
+    .rating-item {
+      margin-bottom: 16px;
+    }
+
+    .rating-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .star-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stars {
+      display: flex;
+      gap: 4px;
+    }
+
+    .star {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      transition: transform 0.2s;
+      font-size: 20px;
+      color: #d1d5db;
+    }
+
+    .star:hover,
+    .star.filled {
+      color: #facc15;
+      transform: scale(1.1);
+    }
+
+    .rating-value {
+      font-size: 14px;
+      color: #6b7280;
+      min-width: 35px;
+    }
+
+    .recommendation-group {
+      display: flex;
+      gap: 16px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+    }
+
+    .radio-option label {
+      margin: 0;
+      font-weight: 400;
+      cursor: pointer;
+      color: #374151;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 10px 16px;
+      background-color: #4f46e5;
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.2s;
+    }
+
+    .submit-button:hover {
+      background-color: #4338ca;
+    }
+
+    .back-link {
+      color: #4f46e5;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <a href="{{ url_for('index') }}" class="back-link">← Back to Professors</a>
+
+  <!-- Professor Info Display -->
+  <div class="professor-info">
+    <p style="color: #1e40af; font-size: 12px; font-weight: 600; margin-bottom: 4px;">REVIEWING</p>
+    <p style="font-size: 18px; font-weight: 600; color: #1f2937; margin-bottom: 4px;">Review for {{ instructor_first }} {{ instructor_last }}</p>
+  </div>
+
+  <!-- Review Form -->
+  <div style="max-width: 800px;">
+    <form method="POST">
+      <!-- Course Selection -->
+      <div class="form-group">
+        <label for="course_number" class="required">Which course did you take with this professor?</label>
+        <select id="course_number" name="course_number" required>
+          <option value="">Select a course</option>
+          {% for course in courses %}
+          <option value="{{ course }}">{{course}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Ratings Section -->
+      <div class="ratings-section">
+        <h3>Rate Your Experience</h3>
+
+        <div class="rating-item">
+          <label class="required">Rating</label>
+          <div class="star-rating">
+            <div class="stars">
+              {% for i in range(1, 6) %}
+              <input type="radio" name="rating" value="{{ i }}" id="rating{{ i }}" required style="display: none;">
+              <label for="rating{{ i }}" class="star" onclick="rateStar(this, 'rating', {{ i }})">★</label>
+              {% endfor %}
+            </div>
+            <div class="rating-value" id="ratingValue">0/5</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comments -->
+      <div class="form-group">
+        <label for="comment">Additional Comments</label>
+        <textarea id="comment" name="comment" placeholder="Share specific strengths, areas for improvement, or other feedback..."></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-button">Submit Review</button>
+    </form>
+  </div>
+
+  <script>
+    function rateStar(element, fieldName, rating) {
+      document.getElementById(fieldName + rating).checked = true;
+      document.getElementById(fieldName + 'Value').textContent = rating + '/5';
+
+      const stars = element.parentElement.querySelectorAll('label.star');
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add('filled');
+        } else {
+          star.classList.remove('filled');
+        }
+      });
+    }
+  </script>
+{% endblock %}

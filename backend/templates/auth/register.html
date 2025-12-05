@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    
+
+    <label for="school_year">school year</label>
+    <select name="school_year" id="school_year">
+    <option value="">-- Select a year --</option>
+      <optgroup label="Undergraduate">
+        <option value="Freshman">Freshman</option>
+        <option value="Sophomore">Sophomore</option>
+        <option value="Junior">Junior</option>
+        <option value="Senior">Senior</option>
+      </optgroup>
+      <optgroup label="Masters">
+        <option value="First Year">First Year</option>
+        <option value="Second Year">Second Year</option>
+        <option value="Third Plus">Third+ Year</option>
+      </optgroup>
+      <optgroup label="PhD">
+        <option value="PhD Year 1">PhD Year 1</option>
+        <option value="PhD Year 2">PhD Year 2</option>
+        <option value="PhD Year 3">PhD Year 3</option>
+        <option value="PhD Year 4">PhD Year 4</option>
+        <option value="PhD Year 5">PhD Year 5</option>
+      </optgroup>
+
+    <input type="submit" value="Register">
+  
+  </form>
+{% endblock %}
