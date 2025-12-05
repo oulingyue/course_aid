@@ -7,154 +7,230 @@
 {% endblock %}
 
 {% block content %}
-
-<style>
+  <style>
     .professor-info {
-        background: #2a3a5a;
-        border: 1px solid #3a4a6a;
-        border-radius: 6px;
-        padding: 16px;
-        margin-bottom: 24px;
-        color: #d1d1d1;
+      background-color: #f0f9ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 24px;
     }
 
-    .professor-info .label { color: #8b9eff; font-size: 12px; font-weight: 600; margin-bottom: 4px; }
-    .professor-info .name { font-size: 18px; font-weight: 600; color: white; margin-bottom: 4px; }
-
-    .review-form { max-width: 800px; }
-
-    .form-group { margin-bottom: 24px; }
-
-    label { display: block; font-size: 14px; font-weight: 600; color: #ececec; margin-bottom: 8px; }
-    label.required::after { content: ' *'; color: #f87171; }
-
-    input[type="text"], textarea {
-        width: 100%;
-        padding: 8px 16px;
-        border: 1px solid #404040;
-        border-radius: 6px;
-        font-size: 14px;
-        font-family: inherit;
-        background: #2f2f2f;
-        color: #ececec;
+    .form-group {
+      margin-bottom: 24px;
     }
 
-    input[type="text"]:focus, textarea:focus {
-        outline: none;
-        border-color: #4b66de;
-        box-shadow: 0 0 0 3px rgba(75, 102, 222, 0.2);
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 8px;
     }
 
-    textarea { resize: vertical; min-height: 100px; }
+    label.required::after {
+      content: ' *';
+      color: #ef4444;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: transparent;
+      box-shadow: 0 0 0 2px white, 0 0 0 4px #4f46e5;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
 
     .ratings-section {
-        background: #262626;
-        padding: 16px;
-        border-radius: 6px;
-        margin-bottom: 24px;
+      background-color: #f9fafb;
+      padding: 16px;
+      border-radius: 6px;
+      margin-bottom: 24px;
     }
 
-    .ratings-section h3 { font-size: 18px; font-weight: 600; color: #ececec; margin-bottom: 16px; }
+    .ratings-section h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 16px;
+    }
 
-    .rating-item { margin-bottom: 16px; }
-    .rating-item:last-child { margin-bottom: 0; }
+    .rating-item {
+      margin-bottom: 16px;
+    }
 
-    .star-rating { display: flex; align-items: center; gap: 8px; }
-    .stars { display: flex; gap: 4px; }
+    .rating-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .star-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stars {
+      display: flex;
+      gap: 4px;
+    }
 
     .star {
-        width: 24px;
-        height: 24px;
-        cursor: pointer;
-        background: none;
-        border: none;
-        padding: 0;
-        transition: transform 0.2s;
-        font-size: 20px;
-        color: #555;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      transition: transform 0.2s;
+      font-size: 20px;
+      color: #d1d5db;
     }
 
-    .star:hover, .star.filled { color: #fbbf24; transform: scale(1.1); }
-    .rating-value { font-size: 14px; color: #888; min-width: 35px; }
+    .star:hover,
+    .star.filled {
+      color: #facc15;
+      transform: scale(1.1);
+    }
 
-    .recommendation-group { display: flex; gap: 16px; }
+    .rating-value {
+      font-size: 14px;
+      color: #6b7280;
+      min-width: 35px;
+    }
 
-    .radio-option { display: flex; align-items: center; gap: 8px; cursor: pointer; }
-    .radio-option label { margin: 0; font-weight: 400; cursor: pointer; color: #d1d1d1; }
+    .recommendation-group {
+      display: flex;
+      gap: 16px;
+    }
 
-    input[type="radio"] { cursor: pointer; width: 16px; height: 16px; accent-color: #4b66de; }
-    input[type="radio"].hidden { display: none; }
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+    }
+
+    .radio-option label {
+      margin: 0;
+      font-weight: 400;
+      cursor: pointer;
+      color: #374151;
+    }
 
     .submit-button {
-        width: 100%;
-        padding: 10px 16px;
-        background: #4b66de;
-        color: white;
-        font-weight: 600;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background 0.2s;
+      width: 100%;
+      padding: 10px 16px;
+      background-color: #4f46e5;
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.2s;
     }
 
-    .submit-button:hover { background: #5a75ed; }
+    .submit-button:hover {
+      background-color: #4338ca;
+    }
 
-    .back-link { color: #8b9eff; text-decoration: none; font-size: 14px; margin-bottom: 24px; display: inline-block; }
-    .back-link:hover { text-decoration: underline; }
-</style>
+    .back-link {
+      color: #4f46e5;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
 
-<a href="{{ url_for('instructor_review', instructor_name=instructor_first ~ ' ' ~ instructor_last) }}" class="back-link">← Back to Professor Reviews</a>
-<div class="professor-info">
-  <p class="label">REVIEWING</p>
-  <p class="name">Review for professor {{ instructor_first }} {{ instructor_last }}</p>
-</div>
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
 
-<div class="review-form">
-  <form method="POST">
-    <div class="form-group">
-      <label for="course_number" class="required">Which course did you take with this professor?</label>
-      <select id="course_number" name="course_number" required>
-        <option value="">Select a course</option>
-        {% for course in courses %}
-        <option value="{{ course }}">{{course}}</option>
-        {% endfor %}
-      </select>
-    </div>
+<a href="{{ url_for('instructor_review', instructor_name=instructor_first ~ ' ' ~ instructor_last) }}" class="back-link">← Back to Professor Reviews</a>  <!-- Professor Info Display -->
+  <div class="professor-info">
+    <p style="color: #1e40af; font-size: 12px; font-weight: 600; margin-bottom: 4px;">REVIEWING</p>
+    <p style="font-size: 18px; font-weight: 600; color: #1f2937; margin-bottom: 4px;">Review for professor {{ instructor_first }} {{ instructor_last }}</p>
+  </div>
 
-    <div class="ratings-section">
-      <h3>Rate Your Experience</h3>
-      <div class="rating-item">
-        <label class="required">Rating</label>
-        <div class="star-rating">
-          <div class="stars">
-            {% for i in range(1, 6) %}
-            <input type="radio" name="rating" value="{{ i }}" id="rating{{ i }}" required class="hidden">
-            <label for="rating{{ i }}" class="star" onclick="rateStar(this, 'rating', {{ i }})">★</label>
-            {% endfor %}
+  <!-- Review Form -->
+  <div style="max-width: 800px;">
+    <form method="POST">
+      <!-- Course Selection -->
+      <div class="form-group">
+        <label for="course_number" class="required">Which course did you take with this professor?</label>
+        <select id="course_number" name="course_number" required>
+          <option value="">Select a course</option>
+          {% for course in courses %}
+          <option value="{{ course }}">{{course}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Ratings Section -->
+      <div class="ratings-section">
+        <h3>Rate Your Experience</h3>
+
+        <div class="rating-item">
+          <label class="required">Rating</label>
+          <div class="star-rating">
+            <div class="stars">
+              {% for i in range(1, 6) %}
+              <input type="radio" name="rating" value="{{ i }}" id="rating{{ i }}" required style="display: none;">
+              <label for="rating{{ i }}" class="star" onclick="rateStar(this, 'rating', {{ i }})">★</label>
+              {% endfor %}
+            </div>
+            <div class="rating-value" id="ratingValue">0/5</div>
           </div>
-          <div class="rating-value" id="ratingValue">0/5</div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="comment">Additional Comments</label>
-      <textarea id="comment" name="comment" placeholder="Share specific strengths, areas for improvement, or other feedback..."></textarea>
-    </div>
+      <!-- Comments -->
+      <div class="form-group">
+        <label for="comment">Additional Comments</label>
+        <textarea id="comment" name="comment" placeholder="Share specific strengths, areas for improvement, or other feedback..."></textarea>
+      </div>
 
-    <button type="submit" class="submit-button">Submit Review</button>
-  </form>
-</div>
+      <!-- Submit Button -->
+      <button type="submit" class="submit-button">Submit Review</button>
+    </form>
+  </div>
 
-<script>
-  function rateStar(element, fieldName, rating) {
-    document.getElementById(fieldName + rating).checked = true;
-    document.getElementById(fieldName + 'Value').textContent = rating + '/5';
-    const stars = element.parentElement.querySelectorAll('label.star');
-    stars.forEach((star, index) => {
-      star.classList.toggle('filled', index < rating);
-    });
-  }
-</script>
+  <script>
+    function rateStar(element, fieldName, rating) {
+      document.getElementById(fieldName + rating).checked = true;
+      document.getElementById(fieldName + 'Value').textContent = rating + '/5';
+
+      const stars = element.parentElement.querySelectorAll('label.star');
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add('filled');
+        } else {
+          star.classList.remove('filled');
+        }
+      });
+    }
+  </script>
 {% endblock %}
