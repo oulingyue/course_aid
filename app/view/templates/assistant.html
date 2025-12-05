@@ -20,6 +20,7 @@
         display: flex;
         flex-direction: column;
         overflow: hidden;
+        margin: 0 auto;
     }
 
     .chat-header {
@@ -83,20 +84,13 @@
     }
 
     .chat-messages {
-        flex: 4;
+        flex: 1;
         overflow-y: auto;
         padding: 30px;
         background: #f8f9fa;
         display: flex;
         flex-direction: column;
         gap: 20px;
-    }
-
-    .chat-input-area {
-        flex: 1;
-        padding: 20px 30px;
-        background: white;
-        border-top: 1px solid #e9ecef;
     }
 
     .message {
@@ -147,6 +141,8 @@
         border-radius: 18px;
         line-height: 1.6;
         font-size: 15px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
     }
 
     .message.assistant .message-content {
@@ -213,7 +209,6 @@
     }
 
     .chat-input-area {
-        flex: 0 0 auto;
         padding: 20px 30px;
         background: white;
         border-top: 1px solid #e9ecef;
@@ -292,10 +287,12 @@
 
     .suggestions {
         display: block;
-        flex-wrap: wrap;
-        gap: 30px;
-        justify-content: center;
         margin-top: 30px;
+    }
+
+    .suggestions > p {
+        font-weight: 600;
+        margin-bottom: 15px;
     }
 
     .suggestion-chip {
@@ -316,6 +313,15 @@
         color: white;
         border-color: #667eea;
         transform: translateY(-2px);
+    }
+
+    .error-message {
+        background: #ffebee;
+        color: #c62828;
+        padding: 10px 15px;
+        border-radius: 8px;
+        margin-top: 10px;
+        font-size: 14px;
     }
 
     .chat-messages::-webkit-scrollbar {
@@ -374,10 +380,10 @@
             <h2>👋 Welcome!</h2>
             <p>I'm your AI assistant. How can I help you today?</p>
             <div class="suggestions">
-                <p>Here's what I can answer</p>
-                <div id="professor-recommendation" class="suggestion-chip" onclick="sendSuggestion('Recommend best professors for a course', 'Great! Type in the course code')">Recommend best professors for a course</div>
-                <div id="compare-professors" class="suggestion-chip" onclick="sendSuggestion('Compare two professors', 'Okay! Go ahead and tell me which two professors')">Compare two professors</div>
-                <div id="curriculum-recommendation" class="suggestion-chip" onclick="sendSuggestion('Suggest courses for my field of interest', 'Sure! What\'s your field of interest?')">Suggest courses for my field of interest</div>
+                <p>Here's what I can answer:</p>
+                <div class="suggestion-chip" onclick="sendSuggestion('qna', 'Ask about a professor and/or courses', 'Shoot your question! Mention the full name of the professor if asking about a specific professor.')">📚 Ask about a professor and/or courses</div>
+                <div class="suggestion-chip" onclick="sendSuggestion('compare', 'Compare two professors', 'Okay! Go ahead and tell me which two professors (use full names like Professor Sarah Chen and John Smith)')">⚖️ Compare two professors</div>
+                <div class="suggestion-chip" onclick="sendSuggestion('curriculum', 'Suggest courses for my field of interest', 'Sure! What\'s your field of interest?')">🎓 Suggest courses for my field of interest</div>
             </div>
         </div>
 
@@ -414,6 +420,9 @@
     const sendButton = document.getElementById('sendButton');
     const typingIndicator = document.getElementById('typingIndicator');
 
+    // Track what type of input we're expecting after a suggestion click
+    let expectedIntent = null;
+
     chatInput.addEventListener('input', function() {
         this.style.height = 'auto';
         this.style.height = Math.min(this.scrollHeight, 120) + 'px';
@@ -427,22 +436,18 @@
     }
 
     function showSuggestions() {
-        // Show AI message with suggestions
         const suggestionsHTML = `
             <div style="margin-top: 10px;">
                 <p style="font-weight: 600; margin-bottom: 15px; color: #667eea;">Here's what I can help you with:</p>
                 <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <div class="suggestion-chip" onclick="sendSuggestion('Recommend best professors for a course', 'Great! Type in the course code')" style="cursor: pointer; width: fit-content;">
-                        📚 Recommend best professors for a course
+                    <div class="suggestion-chip" onclick="sendSuggestion('qna', 'Ask about a professor and/or courses', 'Shoot your question! Mention the full name of the professor if asking about a specific professor.')" style="cursor: pointer; width: fit-content;">
+                        📚 Ask about a professor and/or courses
                     </div>
-                    <div class="suggestion-chip" onclick="sendSuggestion('Compare two professors', 'Okay! Go ahead and tell me which two professors')" style="cursor: pointer; width: fit-content;">
+                    <div class="suggestion-chip" onclick="sendSuggestion('compare', 'Compare two professors', 'Okay! Go ahead and tell me which two professors (use full names like Professor Sarah Chen and John Smith)')" style="cursor: pointer; width: fit-content;">
                         ⚖️ Compare two professors
                     </div>
-                    <div class="suggestion-chip" onclick="sendSuggestion('Suggest courses for my field of interest', 'Sure! What\\'s your field of interest?')" style="cursor: pointer; width: fit-content;">
+                    <div class="suggestion-chip" onclick="sendSuggestion('curriculum', 'Suggest courses for my field of interest', 'Sure! What\\'s your field of interest?')" style="cursor: pointer; width: fit-content;">
                         🎓 Suggest courses for my field of interest
-                    </div>
-                        <div class="suggestion-chip" onclick="sendSuggestion('Recommend best professors for a course', 'Great! Type in multiple course codes')" style="cursor: pointer; width: fit-content;">
-                        📚 Compare courses
                     </div>
                 </div>
             </div>
@@ -451,21 +456,25 @@
         addMessage(suggestionsHTML, false);
     }
 
-    function sendSuggestion(text, followUp) {
-        // Add user's suggestion as a message
+    function sendSuggestion(intent, text, followUp) {
+        // Set the expected intent for the next user input
+        expectedIntent = intent;
+        console.log('Expected intent set to:', intent);
+
+        // Add user's suggestion as a message (visual only, not sent to backend)
         addMessage(text, true);
 
         // Clear input
         chatInput.value = '';
         chatInput.style.height = 'auto';
 
-        // Disable send button
+        // Disable send button temporarily
         sendButton.disabled = true;
 
         // Show typing indicator
         showTypingIndicator();
 
-        // Send follow-up after a delay
+        // Send follow-up prompt after a delay
         setTimeout(() => {
             hideTypingIndicator();
             addMessage(followUp, false);
@@ -480,7 +489,7 @@
     }
 
     function addMessage(content, isUser = false) {
-        // Remove welcome message
+        // Remove welcome message if exists
         const welcomeMsg = document.querySelector('.welcome-message');
         if (welcomeMsg) {
             welcomeMsg.remove();
@@ -506,11 +515,13 @@
 
     function showTypingIndicator() {
         typingIndicator.classList.add('active');
+        typingIndicator.parentElement.style.display = 'flex';
         scrollToBottom();
     }
 
     function hideTypingIndicator() {
         typingIndicator.classList.remove('active');
+        typingIndicator.parentElement.style.display = 'none';
     }
 
     function scrollToBottom() {
@@ -529,35 +540,74 @@
         chatInput.value = '';
         chatInput.style.height = 'auto';
 
-        // Disable send button
+        // Disable send button and show loading
+        const originalButtonContent = sendButton.innerHTML;
+        sendButton.innerHTML = '⏳';
         sendButton.disabled = true;
 
         // Show typing indicator
         showTypingIndicator();
 
-        // Simulate AI response (replace with actual API call)
-        setTimeout(() => {
+        try {
+            // Prepare request body
+            const requestBody = {
+                message: message
+            };
+
+            // If we have an expected intent from a suggestion click, include it
+            if (expectedIntent) {
+                requestBody.intent_hint = expectedIntent;
+                console.log('Sending with intent hint:', expectedIntent);
+                // Reset after using
+                expectedIntent = null;
+            }
+
+            // Call Flask endpoint
+            const response = await fetch('/assistant/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Network response was not ok');
+            }
+
+            const data = await response.json();
+
+            // Hide typing indicator
             hideTypingIndicator();
 
-            const responses = [
-                "Let me pull that up for you....",
-                "I understand what you're asking. Here's what I think...",
-                "Great question! Based on my knowledge, I can tell you that...",
-                "I'd be happy to help you with that. Here's my response...",
-            ];
+            // Check if response exists
+            if (data.response && data.response.trim()) {
+                addMessage(data.response, false);
+            } else {
+                addMessage('I received an empty response. Could you rephrase that?', false);
+            }
 
-            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-            addMessage(randomResponse, false);
+            // Log intent for debugging
+            console.log('Response received. Intent was:', data.intent);
 
+        } catch (error) {
+            hideTypingIndicator();
 
+            const errorMsg = `<div class="error-message">⚠️ ${error.message}</div>`;
+            addMessage(errorMsg, false);
+
+            console.error('Error:', error);
+        } finally {
+            sendButton.innerHTML = originalButtonContent;
             sendButton.disabled = false;
             chatInput.focus();
-        }, 1500);
+        }
     }
 
+    // Focus on input when page loads
     window.addEventListener('load', () => {
         chatInput.focus();
     });
 </script>
-
 {% endblock %}

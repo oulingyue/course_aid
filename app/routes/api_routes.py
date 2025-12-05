@@ -20,6 +20,18 @@ def load_logged_in_user():
         result = execute_qry(q, (user_id,))
         g.user = result[0] if result else None
 
+#---- endpoints for assistant ----#
+
+@app.route('/assistant', methods=['GET'])
+@login_required
+def get_assistant():
+    return assistant_controller.get_assistant()
+
+@app.route('/assistant/chat', methods=['POST'])
+@login_required
+def assistant_chat():
+    return assistant_controller.answer_question(conn)
+
 
 #---- endpoints for instructor view ----#
 @app.route("/instructor/<instructor_name>/reviews", methods=["GET"])
@@ -33,7 +45,7 @@ def handle_votes(review_id):
     return vote_controller.handle_votes(conn, review_id)
 
 
-#---- Endpoints for user reviews -----# 
+#---- Endpoints for user reviews -----#
 @app.route("/user_reviews")
 @login_required
 def get_user_reviews():
@@ -50,14 +62,8 @@ def delete_reviews(review_id):
     return review_controller.delete_review(review_id, conn)
 
 
-#---- assistant API endpoints----#
-@app.route("/assistant", methods=["GET","POST"])
-@login_required
-def assistant():
-    return assistant_controller.get_assistant()
 
-
-#---- API endpoints for posting reviews ----# 
+#---- API endpoints for posting reviews ----#
 @app.route('/review/<instructor_first>/<instructor_last>', methods=['GET', 'POST'])
 @login_required
 def review_form(instructor_first,instructor_last):
@@ -69,7 +75,7 @@ def review_form(instructor_first,instructor_last):
 def view_reviews():
     return review_controller.view_reviews()
 
-#---- search reviews ----# 
+#---- search reviews ----#
 @app.route("/search-page")
 @login_required
 def search_page():

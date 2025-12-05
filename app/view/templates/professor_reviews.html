@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Reviews - {{ instructor_name|default('Instructor') }}</title>
+{% extends "base.html" %}
+
+{% block title %}Course Reviews - {{ instructor_name|default('Instructor') }}{% endblock %}
+
+{% block content %}
     <style>
         * {
             margin: 0;
@@ -57,11 +56,44 @@
             flex: 1;
         }
 
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
         .profile-name {
             font-size: 32px;
             font-weight: bold;
             color: #2c3e50;
-            margin-bottom: 10px;
+        }
+
+        .write-review-btn {
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .write-review-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .write-review-btn:active {
+            transform: translateY(0);
         }
 
         .profile-rating {
@@ -322,6 +354,12 @@
                 font-size: 48px;
             }
 
+            .profile-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
             .profile-name {
                 font-size: 24px;
             }
@@ -336,8 +374,6 @@
             }
         }
     </style>
-</head>
-<body>
     <div class="container">
         <h1>Reviews for {{ instructor_name|default('Instructor') }}</h1>
 
@@ -354,14 +390,19 @@
                 👨‍🏫
             </div>
             <div class="profile-details">
-                <div class="profile-name">
-                    {{ instructor_info.first_name }} {{ instructor_info.last_name }}
+                <div class="profile-header">
+                    <div class="profile-name">
+                        {{ instructor_info.first_name }} {{ instructor_info.last_name }}
+                    </div>
+                    <a href="/review/{{ instructor_info.first_name }}/{{ instructor_info.last_name }}"
+                       class="write-review-btn">
+                        ✏️ Write Review
+                    </a>
                 </div>
                 <div class="profile-rating">
                     <span class="rating-value">{{ instructor_info.avg_rating }}</span>
                     <span>⭐ Average Rating</span>
                 </div>
-
 
                 {% if instructor_info.consensus_summary %}
                 <div class="consensus-summary">
@@ -505,5 +546,4 @@
             });
         });
     </script>
-</body>
-</html>
+{% endblock %}
