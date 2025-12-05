@@ -7,6 +7,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+token = os.getenv("HF_TOKEN")
+
+from huggingface_hub import login
+login(token=token)
+
 app = Flask(__name__,
             template_folder='view/templates',
             static_folder='view/static')
