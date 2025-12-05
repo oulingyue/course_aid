@@ -3,547 +3,322 @@
 {% block title %}Course Reviews - {{ instructor_name|default('Instructor') }}{% endblock %}
 
 {% block content %}
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { text-align: center; margin-bottom: 30px; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-            padding: 20px;
-        }
+    .instructor-profile {
+        background: #2f2f2f;
+        border-radius: 8px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        display: flex;
+        gap: 30px;
+        align-items: flex-start;
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    .profile-picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 60px;
+        color: white;
+        flex-shrink: 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-        }
+    .profile-details { flex: 1; }
+    .profile-header { display: flex; align-items: center; gap: 20px; margin-bottom: 10px; flex-wrap: wrap; }
+    .profile-name { font-size: 32px; font-weight: bold; color: #ececec; }
 
-        .instructor-profile {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            display: flex;
-            gap: 30px;
-            align-items: flex-start;
-        }
+    .write-review-btn {
+        padding: 10px 24px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+    }
 
-        .profile-picture {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            color: white;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
+    .write-review-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4); }
 
-        .profile-details {
-            flex: 1;
-        }
+    .profile-rating { font-size: 18px; color: #fbbf24; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .rating-value { font-size: 24px; }
 
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
-        }
+    .consensus-summary {
+        background: #262626;
+        border-left: 4px solid #667eea;
+        padding: 15px 20px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        font-style: italic;
+        color: #a0a0a0;
+        line-height: 1.6;
+    }
 
-        .profile-name {
-            font-size: 32px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
+    .consensus-summary.loading { color: #666; display: flex; align-items: center; gap: 10px; }
 
-        .write-review-btn {
-            padding: 10px 24px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-        }
+    .loading-spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid #404040;
+        border-top: 2px solid #667eea;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
 
-        .write-review-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        .write-review-btn:active {
-            transform: translateY(0);
-        }
+    .profile-info { display: flex; flex-direction: column; gap: 15px; }
+    .info-section { display: flex; gap: 10px; }
+    .info-label { font-weight: 600; color: #a0a0a0; min-width: 100px; }
+    .info-content { color: #888; flex: 1; }
+    .info-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .info-list li { background: #2a3a5a; padding: 6px 14px; border-radius: 16px; font-size: 14px; color: #8b9eff; font-weight: 500; }
+    .info-list.dept li { background: #3d3566; color: #a78bfa; }
 
-        .profile-rating {
-            font-size: 18px;
-            color: #f39c12;
-            font-weight: 600;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .review-card {
+        border: 1px solid #404040;
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 8px;
+        background: #2f2f2f;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
 
-        .rating-value {
-            font-size: 24px;
-        }
+    .review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; font-size: 0.9em; color: #888; }
+    .course-number { font-size: 1.2em; font-weight: bold; color: #ececec; }
+    .dates { text-align: right; }
+    .dates div { margin-bottom: 3px; }
+    .rating { color: #fbbf24; font-weight: bold; font-size: 1.1em; margin: 10px 0; }
+    .comment { margin: 15px 0; line-height: 1.6; color: #d1d1d1; }
 
-        .consensus-summary {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            font-style: italic;
-            color: #495057;
-            line-height: 1.6;
-        }
+    .vote-buttons { display: flex; gap: 15px; align-items: center; margin-top: 15px; }
 
-        .consensus-summary.loading {
-            color: #999;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .vote-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border: 2px solid #404040;
+        background: #2f2f2f;
+        color: #d1d1d1;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 16px;
+        font-weight: 500;
+    }
 
-        .loading-spinner {
-            width: 16px;
-            height: 16px;
-            border: 2px solid #e0e0e0;
-            border-top: 2px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
+    .vote-btn:hover:not(:disabled) { border-color: #555; transform: translateY(-2px); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .vote-btn.active-upvote { background: #1a5a3a; border-color: #2d7a4a; color: #4ade80; }
+    .vote-btn.active-upvote:hover { background: #1e6b42; border-color: #3a9a5a; }
+    .vote-btn.active-downvote { background: #5a1a1a; border-color: #7a2d2d; color: #f87171; }
+    .vote-btn.active-downvote:hover { background: #6b1e1e; border-color: #9a3a3a; }
+    .vote-btn:disabled { cursor: not-allowed; opacity: 0.5; }
+    .vote-count { font-weight: bold; font-size: 1.1em; }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+    .message, .static-message { padding: 15px; margin: 15px 0; border-radius: 6px; text-align: center; font-weight: 500; }
+    .message { background: #2a3a5a; color: #8b9eff; display: none; }
+    .message.error, .static-message.error { background: #4a1c1c; color: #f87171; }
+    .message.success, .static-message.success { background: #1a3a2a; color: #4ade80; }
+    .static-message.info { background: #2a3a5a; color: #8b9eff; }
 
-        .profile-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+    .no-reviews { text-align: center; padding: 40px; color: #888; font-size: 1.1em; }
 
-        .info-section {
-            display: flex;
-            gap: 10px;
-        }
+    @media (max-width: 768px) {
+        .instructor-profile { flex-direction: column; align-items: center; text-align: center; }
+        .profile-picture { width: 120px; height: 120px; font-size: 48px; }
+        .profile-header { flex-direction: column; align-items: center; text-align: center; }
+        .profile-name { font-size: 24px; }
+        .info-section { flex-direction: column; gap: 5px; }
+        .info-list { justify-content: center; }
+    }
+</style>
 
-        .info-label {
-            font-weight: 600;
-            color: #555;
-            min-width: 100px;
-        }
+<div class="container">
+    <h1>Reviews for {{ instructor_name|default('Instructor') }}</h1>
 
-        .info-content {
-            color: #666;
-            flex: 1;
-        }
+    <div id="message" class="message"></div>
 
-        .info-list {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+    {% if message %}
+    <div class="static-message {{ message_type|default('info') }}">{{ message }}</div>
+    {% endif %}
 
-        .info-list li {
-            background: #e3f2fd;
-            padding: 6px 14px;
-            border-radius: 16px;
-            font-size: 14px;
-            color: #1565c0;
-            font-weight: 500;
-        }
-
-        .info-list.dept li {
-            background: #f3e5f5;
-            color: #7b1fa2;
-        }
-
-        .review-card {
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-            background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-            font-size: 0.9em;
-            color: #666;
-        }
-
-        .course-number {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .dates {
-            text-align: right;
-        }
-
-        .dates div {
-            margin-bottom: 3px;
-        }
-
-        .rating {
-            color: #f39c12;
-            font-weight: bold;
-            font-size: 1.1em;
-            margin: 10px 0;
-        }
-
-        .comment {
-            margin: 15px 0;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .vote-buttons {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            margin-top: 15px;
-        }
-
-        .vote-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border: 2px solid #ddd;
-            background: white;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .vote-btn:hover:not(:disabled) {
-            border-color: #999;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        }
-
-        .vote-btn.active-upvote {
-            background: #27ae60;
-            border-color: #27ae60;
-            color: white;
-        }
-
-        .vote-btn.active-upvote:hover {
-            background: #229954;
-            border-color: #229954;
-        }
-
-        .vote-btn.active-downvote {
-            background: #e74c3c;
-            border-color: #e74c3c;
-            color: white;
-        }
-
-        .vote-btn.active-downvote:hover {
-            background: #c0392b;
-            border-color: #c0392b;
-        }
-
-        .vote-btn:disabled {
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-
-        .vote-count {
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-
-        .message {
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 6px;
-            background: #e3f2fd;
-            color: #1565c0;
-            text-align: center;
-            font-weight: 500;
-            display: none;
-        }
-
-        .message.error {
-            background: #ffebee;
-            color: #c62828;
-        }
-
-        .message.success {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .static-message {
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 6px;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        .static-message.info {
-            background: #e3f2fd;
-            color: #1565c0;
-        }
-
-        .static-message.success {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .static-message.error {
-            background: #ffebee;
-            color: #c62828;
-        }
-
-        .no-reviews {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-            font-size: 1.1em;
-        }
-
-        @media (max-width: 768px) {
-            .instructor-profile {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .profile-picture {
-                width: 120px;
-                height: 120px;
-                font-size: 48px;
-            }
-
-            .profile-header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .profile-name {
-                font-size: 24px;
-            }
-
-            .info-section {
-                flex-direction: column;
-                gap: 5px;
-            }
-
-            .info-list {
-                justify-content: center;
-            }
-        }
-    </style>
-    <div class="container">
-        <h1>Reviews for {{ instructor_name|default('Instructor') }}</h1>
-
-        <div id="message" class="message"></div>
-
-        {% if message %}
-        <div class="static-message {{ message_type|default('info') }}">{{ message }}</div>
-        {% endif %}
-
-        <!-- Instructor Profile Section -->
-        {% if instructor_info %}
-        <div class="instructor-profile">
-            <div class="profile-picture">
-                👨‍🏫
+    <!-- Instructor Profile Section -->
+    {% if instructor_info %}
+    <div class="instructor-profile">
+        <div class="profile-picture">
+            👨‍🏫
+        </div>
+        <div class="profile-details">
+            <div class="profile-header">
+                <div class="profile-name">
+                    {{ instructor_info.first_name }} {{ instructor_info.last_name }}
+                </div>
+                <a href="/review/{{ instructor_info.first_name }}/{{ instructor_info.last_name }}"
+                    class="write-review-btn">
+                    ✏️ Write Review
+                </a>
             </div>
-            <div class="profile-details">
-                <div class="profile-header">
-                    <div class="profile-name">
-                        {{ instructor_info.first_name }} {{ instructor_info.last_name }}
-                    </div>
-                    <a href="/review/{{ instructor_info.first_name }}/{{ instructor_info.last_name }}"
-                       class="write-review-btn">
-                        ✏️ Write Review
-                    </a>
-                </div>
-                <div class="profile-rating">
-                    <span class="rating-value">{{ instructor_info.avg_rating }}</span>
-                    <span>⭐ Average Rating</span>
-                </div>
+            <div class="profile-rating">
+                <span class="rating-value">{{ instructor_info.avg_rating }}</span>
+                <span>⭐ Average Rating</span>
+            </div>
 
-                {% if instructor_info.consensus_summary %}
-                <div class="consensus-summary">
-                    {{ instructor_info.consensus_summary }}
-                </div>
-                {% else %}
-                <div class="consensus-summary loading">
-                    <div class="loading-spinner"></div>
-                    Loading consensus summary...
-                </div>
-                {% endif %}
+            {% if instructor_info.consensus_summary %}
+            <div class="consensus-summary">
+                {{ instructor_info.consensus_summary }}
+            </div>
+            {% else %}
+            <div class="consensus-summary loading">
+                <div class="loading-spinner"></div>
+                Loading consensus summary...
+            </div>
+            {% endif %}
 
-                <div class="profile-info">
-                    <div class="info-section">
-                        <div class="info-label">Courses:</div>
-                        <div class="info-content">
-                            <ul class="info-list">
-                                {% for course in instructor_info.courses %}
-                                <li>{{ course }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
+            <div class="profile-info">
+                <div class="info-section">
+                    <div class="info-label">Courses:</div>
+                    <div class="info-content">
+                        <ul class="info-list">
+                            {% for course in instructor_info.courses %}
+                            <li>{{ course }}</li>
+                            {% endfor %}
+                        </ul>
                     </div>
-                    <div class="info-section">
-                        <div class="info-label">Departments:</div>
-                        <div class="info-content">
-                            <ul class="info-list dept">
-                                {% for dept in instructor_info.departments %}
-                                <li>{{ dept }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
+                </div>
+                <div class="info-section">
+                    <div class="info-label">Departments:</div>
+                    <div class="info-content">
+                        <ul class="info-list dept">
+                            {% for dept in instructor_info.departments %}
+                            <li>{{ dept }}</li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        {% endif %}
-
-        {% if reviews %}
-        <div id="reviews-container">
-            {% for review in reviews %}
-            <div class="review-card">
-                <div class="review-header">
-                    <div>
-                        <span class="course-number">{{ review.course_number }}</span>
-                    </div>
-                    <div class="dates">
-                        <div>Last Updated: {{ review.last_updated }}</div>
-                        <div>Posted: {{ review.post_time }}</div>
-                    </div>
-                </div>
-                <div class="rating">Rating: {{ review.rating }} ⭐</div>
-                <div class="comment">{{ review.comment }}</div>
-                <div class="vote-buttons">
-                    <button class="vote-btn {% if review.user_vote == 'upvote' %}active-upvote{% endif %}"
-                            data-review-id="{{ review.review_id }}"
-                            data-vote-type="upvote">
-                        👍 <span class="vote-count">{{ review.upvotes }}</span>
-                    </button>
-                    <button class="vote-btn {% if review.user_vote == 'downvote' %}active-downvote{% endif %}"
-                            data-review-id="{{ review.review_id }}"
-                            data-vote-type="downvote">
-                        👎 <span class="vote-count">{{ review.downvotes }}</span>
-                    </button>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="no-reviews">
-            <p>No reviews available yet.</p>
-        </div>
-        {% endif %}
     </div>
+    {% endif %}
 
-    <script>
-        function showMessage(text, type = 'info') {
-            const messageDiv = document.getElementById('message');
-            messageDiv.textContent = text;
-            messageDiv.className = 'message ' + type;
-            messageDiv.style.display = 'block';
+    {% if reviews %}
+    <div id="reviews-container">
+        {% for review in reviews %}
+        <div class="review-card">
+            <div class="review-header">
+                <div>
+                    <span class="course-number">{{ review.course_number }}</span>
+                </div>
+                <div class="dates">
+                    <div>Last Updated: {{ review.last_updated }}</div>
+                    <div>Posted: {{ review.post_time }}</div>
+                </div>
+            </div>
+            <div class="rating">Rating: {{ review.rating }} ⭐</div>
+            <div class="comment">{{ review.comment }}</div>
+            <div class="vote-buttons">
+                <button class="vote-btn {% if review.user_vote == 'upvote' %}active-upvote{% endif %}"
+                        data-review-id="{{ review.review_id }}"
+                        data-vote-type="upvote">
+                    👍 <span class="vote-count">{{ review.upvotes }}</span>
+                </button>
+                <button class="vote-btn {% if review.user_vote == 'downvote' %}active-downvote{% endif %}"
+                        data-review-id="{{ review.review_id }}"
+                        data-vote-type="downvote">
+                    👎 <span class="vote-count">{{ review.downvotes }}</span>
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-reviews">
+        <p>No reviews available yet.</p>
+    </div>
+    {% endif %}
+</div>
 
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, 3000);
-        }
+<script>
+    function showMessage(text, type = 'info') {
+        const messageDiv = document.getElementById('message');
+        messageDiv.textContent = text;
+        messageDiv.className = 'message ' + type;
+        messageDiv.style.display = 'block';
 
-        async function handleVote(reviewId, voteType, button) {
-            const reviewCard = button.closest('.review-card');
-            const upvoteBtn = reviewCard.querySelector('[data-vote-type="upvote"]');
-            const downvoteBtn = reviewCard.querySelector('[data-vote-type="downvote"]');
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 3000);
+    }
 
-            try {
-                const response = await fetch('/reviews/' + reviewId + '/vote', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        vote_type: voteType
-                    })
-                });
+    async function handleVote(reviewId, voteType, button) {
+        const reviewCard = button.closest('.review-card');
+        const upvoteBtn = reviewCard.querySelector('[data-vote-type="upvote"]');
+        const downvoteBtn = reviewCard.querySelector('[data-vote-type="downvote"]');
 
-                const data = await response.json();
+        try {
+            const response = await fetch('/reviews/' + reviewId + '/vote', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    vote_type: voteType
+                })
+            });
 
-                if (data.success) {
-                    upvoteBtn.querySelector('.vote-count').textContent = data.upvotes;
-                    downvoteBtn.querySelector('.vote-count').textContent = data.downvotes;
+            const data = await response.json();
 
-                    if (data.action === 'removed') {
-                        button.classList.remove('active-' + voteType);
-                        showMessage('Vote removed', 'success');
-                    } else if (data.action === 'changed') {
-                        upvoteBtn.classList.remove('active-upvote');
-                        downvoteBtn.classList.remove('active-downvote');
-                        button.classList.add('active-' + voteType);
-                        showMessage('Vote changed', 'success');
-                    } else if (data.action === 'added') {
-                        button.classList.add('active-' + voteType);
-                        showMessage('Vote recorded', 'success');
-                    }
-                } else {
-                    showMessage(data.message || 'Failed to record vote', 'error');
+            if (data.success) {
+                upvoteBtn.querySelector('.vote-count').textContent = data.upvotes;
+                downvoteBtn.querySelector('.vote-count').textContent = data.downvotes;
+
+                if (data.action === 'removed') {
+                    button.classList.remove('active-' + voteType);
+                    showMessage('Vote removed', 'success');
+                } else if (data.action === 'changed') {
+                    upvoteBtn.classList.remove('active-upvote');
+                    downvoteBtn.classList.remove('active-downvote');
+                    button.classList.add('active-' + voteType);
+                    showMessage('Vote changed', 'success');
+                } else if (data.action === 'added') {
+                    button.classList.add('active-' + voteType);
+                    showMessage('Vote recorded', 'success');
                 }
-
-            } catch (error) {
-                console.error('Error:', error);
-                showMessage('Network error. Please try again.', 'error');
+            } else {
+                showMessage(data.message || 'Failed to record vote', 'error');
             }
+
+        } catch (error) {
+            console.error('Error:', error);
+            showMessage('Network error. Please try again.', 'error');
         }
+    }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const voteButtons = document.querySelectorAll('.vote-btn');
+    document.addEventListener('DOMContentLoaded', function() {
+        const voteButtons = document.querySelectorAll('.vote-btn');
 
-            voteButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const reviewId = parseInt(this.dataset.reviewId);
-                    const voteType = this.dataset.voteType;
-                    handleVote(reviewId, voteType, this);
-                });
+        voteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const reviewId = parseInt(this.dataset.reviewId);
+                const voteType = this.dataset.voteType;
+                handleVote(reviewId, voteType, this);
             });
         });
-    </script>
+    });
+</script>
 {% endblock %}

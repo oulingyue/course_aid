@@ -114,55 +114,11 @@ def update_summary_cache(cursor):
 
 
 if __name__ == '__main__':
-
-    # conn = db_connection.connect()
-    #
-    # try:
-    #
-    #     update_summary_cache(cursor)
-    #
-    # except Exception as e:
-    #     print(e)
-    # finally:
-    #
-    #     conn.close()
-
-    '''
-    CREATE OR REPLACE FUNCTION check_for_summary(
-    in first_name varchar(50), 
-    in last_name varchar(50), 
-    in check_timestamp timestamptz
-)
-RETURNS boolean AS $$
-DECLARE
-    max_timestamp timestamptz;
-    comment_count integer;
-BEGIN
-    
-    SELECT MAX(last_updated) INTO max_timestamp
-    FROM review 
-    WHERE instructor_first = first_name
-      AND instructor_last = last_name;
-    
-    
-    IF max_timestamp < current_timestamp THEN
-        
-        SELECT COUNT(comment) INTO comment_count
-        FROM review 
-        WHERE instructor_first = first_name
-          AND instructor_last = last_name;
-        
-        IF comment_count >= 20 THEN
-            RETURN TRUE;
-        ELSE
-            RETURN FALSE;
-        END IF;
-    ELSE
-        RETURN FALSE;
-    END IF;
-END;
-$$ LANGUAGE plpgsql;
-    '''
-
-
-
+    conn = db_connection.connect()
+    cursor = conn.cursor
+    try:
+        update_summary_cache(cursor)
+    except Exception as e:
+        print(e)
+    finally:
+        conn.close()

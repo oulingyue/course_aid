@@ -4,140 +4,32 @@
 
 {% block content %}
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    .container { max-width: 900px; margin: 0 auto; }
+    .container h1 { text-align: center; margin-bottom: 30px; }
 
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f5f5f5;
-        padding: 20px;
-    }
-
-    .container {
-        max-width: 900px;
-        margin: 0 auto;
-    }
-
-    .container h1 {
-        color: #333;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    .message {
-        padding: 15px;
-        margin: 15px 0;
-        border-radius: 6px;
-        text-align: center;
-        font-weight: 500;
-        display: none;
-    }
-
-    .message.success {
-        background: #e8f5e9;
-        color: #2e7d32;
-    }
-
-    .message.error {
-        background: #ffebee;
-        color: #c62828;
-    }
-
-    .message.info {
-        background: #e3f2fd;
-        color: #1565c0;
-    }
-
-    .static-message {
-        padding: 15px;
-        margin: 15px 0;
-        border-radius: 6px;
-        text-align: center;
-        font-weight: 500;
-    }
-
-    .static-message.info {
-        background: #e3f2fd;
-        color: #1565c0;
-    }
-
-    .static-message.success {
-        background: #e8f5e9;
-        color: #2e7d32;
-    }
-
-    .static-message.error {
-        background: #ffebee;
-        color: #c62828;
-    }
+    .message, .static-message { padding: 15px; margin: 15px 0; border-radius: 6px; text-align: center; font-weight: 500; }
+    .message { display: none; }
+    .message.success, .static-message.success { background: #1a3a2a; color: #4ade80; }
+    .message.error, .static-message.error { background: #4a1c1c; color: #f87171; }
+    .message.info, .static-message.info { background: #2a3a5a; color: #8b9eff; }
 
     .reviews-container {
-        background-color: white;
+        background: #2f2f2f;
         border-radius: 8px;
         padding: 20px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
-    .review {
-        border-bottom: 1px solid #e0e0e0;
-        padding: 20px 0;
-        position: relative;
-    }
-
-    .review:last-child {
-        border-bottom: none;
-    }
-
-    .review-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-
-    .course-info {
-        flex: 1;
-    }
-
-    .course-number {
-        font-weight: bold;
-        color: #2c3e50;
-        font-size: 18px;
-    }
-
-    .instructor-name {
-        color: #666;
-        font-size: 14px;
-        margin-top: 5px;
-    }
-
-    .review-dates {
-        text-align: right;
-        color: #666;
-        font-size: 14px;
-    }
-
-    .review-rating {
-        color: #ffa500;
-        font-size: 18px;
-        margin: 10px 0;
-    }
-
-    .review-text {
-        color: #444;
-        line-height: 1.6;
-        font-size: 15px;
-        margin: 15px 0;
-    }
-
-    .review-actions {
-        display: flex;
-        gap: 10px;
-        margin-top: 15px;
-    }
+    .review { border-bottom: 1px solid #404040; padding: 20px 0; position: relative; }
+    .review:last-child { border-bottom: none; }
+    .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .course-info { flex: 1; }
+    .course-number { font-weight: bold; color: #ececec; font-size: 18px; }
+    .instructor-name { color: #888; font-size: 14px; margin-top: 5px; }
+    .review-dates { text-align: right; color: #888; font-size: 14px; }
+    .review-rating { color: #fbbf24; font-size: 18px; margin: 10px 0; }
+    .review-text { color: #d1d1d1; line-height: 1.6; font-size: 15px; margin: 15px 0; }
+    .review-actions { display: flex; gap: 10px; margin-top: 15px; }
 
     .btn {
         padding: 8px 16px;
@@ -149,97 +41,38 @@
         transition: all 0.3s ease;
     }
 
-    .btn-edit {
-        background: #3498db;
-        color: white;
-    }
+    .btn-edit { background: #2a4a6a; color: #8b9eff; }
+    .btn-edit:hover { background: #3a5a7a; }
+    .btn-delete { background: #5a1a1a; color: #f87171; }
+    .btn-delete:hover { background: #6b2a2a; }
+    .btn-save { background: #1a5a3a; color: #4ade80; }
+    .btn-save:hover { background: #2a6b4a; }
+    .btn-cancel { background: #3a3a3a; color: #a0a0a0; }
+    .btn-cancel:hover { background: #4a4a4a; }
 
-    .btn-edit:hover {
-        background: #2980b9;
-    }
+    .edit-form { display: none; margin-top: 15px; padding: 15px; background: #262626; border-radius: 5px; }
+    .edit-form.active { display: block; }
 
-    .btn-delete {
-        background: #e74c3c;
-        color: white;
-    }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 5px; font-weight: 500; color: #ececec; }
 
-    .btn-delete:hover {
-        background: #c0392b;
-    }
-
-    .btn-save {
-        background: #27ae60;
-        color: white;
-    }
-
-    .btn-save:hover {
-        background: #229954;
-    }
-
-    .btn-cancel {
-        background: #95a5a6;
-        color: white;
-    }
-
-    .btn-cancel:hover {
-        background: #7f8c8d;
-    }
-
-    .edit-form {
-        display: none;
-        margin-top: 15px;
-        padding: 15px;
-        background: #f9f9f9;
-        border-radius: 5px;
-    }
-
-    .edit-form.active {
-        display: block;
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    .form-group label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: 500;
-        color: #333;
-    }
-
-    .form-group textarea {
-        width: 100%;
+    .form-group textarea,
+    .form-group input[type="number"] {
         padding: 10px;
-        border: 1px solid #ddd;
+        border: 1px solid #404040;
         border-radius: 5px;
         font-family: inherit;
         font-size: 14px;
-        resize: vertical;
-        min-height: 100px;
+        background: #2f2f2f;
+        color: #ececec;
     }
 
-    .form-group input[type="number"] {
-        width: 100px;
-        padding: 8px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 14px;
-    }
+    .form-group textarea { width: 100%; resize: vertical; min-height: 100px; }
+    .form-group input[type="number"] { width: 100px; padding: 8px; }
 
-    .no-reviews {
-        text-align: center;
-        padding: 40px;
-        color: #666;
-    }
-
-    .review-content {
-        transition: opacity 0.3s ease;
-    }
-
-    .review-content.editing {
-        opacity: 0.5;
-    }
+    .no-reviews { text-align: center; padding: 40px; color: #888; }
+    .review-content { transition: opacity 0.3s ease; }
+    .review-content.editing { opacity: 0.5; }
 </style>
 
 <div class="container">
